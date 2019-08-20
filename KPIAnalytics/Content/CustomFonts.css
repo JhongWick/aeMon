@@ -1,0 +1,6 @@
+﻿body {
+} 
+@font-face {
+    font-family: 'digital-7';
+    src: url('CustomFonts/digital-7.ttf') format('truetype');
+}

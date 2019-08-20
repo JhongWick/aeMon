@@ -1,0 +1,387 @@
+﻿@model Entities.Target
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+
+
+    .box {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+    }
+
+    #map {
+        position: inherit !important;
+        height: 350px;
+        width: auto;
+    }
+</style>
+
+
+@*<div class="row">
+        <section class="col-lg-12 connectedSortable">
+            <div class="box " style="height:350px;border-top:none !important;background-color:white">
+                <div class="col-md-5" style="height:100% !important">
+
+                </div>
+                <div class="col-md-7" style="padding-left: 0px !important;">
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>*@
+
+
+@if (Model.TargetId != 0)
+{
+
+    <div class="row">
+
+
+
+        @{
+            double MT = @DataAccessLayer.KPIData.AllProductions() * .001;
+            double FG = @DataAccessLayer.KPIData.AllFarmers();
+            double TG = @DataAccessLayer.KPIData.AllTrees();
+            double Sustainability = (MT / Model.MetricTonne) * 100;
+            double FarmersGoal = (FG / Model.Farmers) * 100;
+            double TreesGoal = (TG / Model.Trees) * 100;
+        }
+        <section class="col-lg-4 connectedSortable">
+            <div class="info-box bg-yellow">
+                <span class="info-box-icon">
+                    <img src="~/Images/cocoa.png" style="height:50px" />
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Sustainability sourced cocoa</span>
+                    <span class="info-box-number">@Sustainability%</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: @Sustainability%"></div>
+                    </div>
+                    <span class="progress-description">
+                        @Convert.ToDecimal(MT).ToString("#,##0.00") Metric Tonne
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+            <div class="info-box bg-green">
+                <span class="info-box-icon">
+                    <img src="~/Images/gardener.png" style="height:50px" />
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Farmers</span>
+                    <span class="info-box-number">@Convert.ToDecimal(@DataAccessLayer.KPIData.AllFarmers()).ToString("#,##0")</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width:@FarmersGoal%"></div>
+                    </div>
+                    <span class="progress-description">
+                        @Convert.ToDecimal(FarmersGoal).ToString("#,##0.00")% (Goal of  @Convert.ToDecimal(Model.Farmers).ToString("#,##0")) farmers
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+
+            <div class="info-box bg-red">
+                <span class="info-box-icon">
+                    @*<img src="~/Images/houses.png" style="height:50px" />*@
+                    <i class="fa fa-tree "></i>
+                </span>
+                <div class="info-box-content">
+                    <span class="info-box-text">Trees</span>
+                    <span class="info-box-number">@Convert.ToDecimal(@DataAccessLayer.KPIData.AllTrees()).ToString("#,##0")</span>
+                    <div class="progress">
+                        <div class="progress-bar" style="width: @TreesGoal% "></div>
+                    </div>
+                    <span class="progress-description">
+                        @Convert.ToDecimal(TreesGoal).ToString("#,##0.00")% (Goal of  @Convert.ToDecimal(Model.Trees).ToString("#,##0")) Trees
+                    </span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <div class="box " style="height:auto !important;width:100%; border-top:none !important;padding:0px !important;">
+                <div id="map"></div>
+            </div>
+            <div class="box " style="height:100% !important;width:100%; border-top:none !important;background-color:yellowgreen">
+                <div class="box-header">
+                    @*<img src="~/Images/gardener.png" style="margin-left:50px;color:white !important;height:100px" />*@
+                    <p class="font-weight-bold" style="color:white!important;font-size:xx-large ;font-weight:700;">Bottomlines</p>
+                    @*<h1 class="pull-left" style="color:white!important;font-weight:700;position:relative;margin-top:30px;margin-right:50px;">Bottomlines</h1>*@
+
+                    <div class="text-left" style="color:white !important;font-weight:bold !important;padding-left:10px;padding-right:10px">
+                        @Html.Raw(Model.Description)
+                    </div>
+
+                    @*<ul style="font-weight:bold;">
+            <li style="color:white!important">To increase production of cacao by 40% per year;</li>
+            <li style="color:white!important">To increase production productivity to 2 kg/tree/year;</li>
+            <li style="color:white!important">To ensure availability of cocoa beans to support and sustain value-adding activities; and</li>
+            <li style="color:white!important">
+
+                To contribute to the goal of attaining inclusive growth and poverty alleviation through:
+                <ul>
+                    <li>Increase in farmers’ income to at least PhP130,000 per hectare per year;</li>
+                    <li>Increase export sales by at least USD 250-M per year; and,</li>
+                    <li>Generate at least 150,000 jobs by 2022</li>
+
+                </ul>
+
+            </li>
+        </ul>*@
+                    
+                </div>
+            </div>
+
+
+            <div class="box " style="height:100% !important;width:100%; border-top:none !important;background-color:mediumvioletred">
+                <div class="box-header">
+                    <center>
+                        <h2 class="" style="color:white!important;font-weight:700;margin:0px !important;">@Model.YearEnd Philippine Cacao Challenge</h2>
+                        <br/>
+                        <img src="~/Images/cocoa.png" style="height:50px" />
+                        <hr class="bg-red" />
+                        <h1 class="" style="color:white!important;font-weight:500;">@Convert.ToDecimal(Model.MetricTonne).ToString("#,##0") MT</h1>
+                        <h3 class="" style="color:white!important;font-weight:500;">fermented beans by @Model.YearEnd for the export and domestic markets through a 40% annual production increase.</h3>
+
+                    </center>
+                </div>
+                <!-- /.box-header -->
+
+            </div>
+
+        </section>
+        <section class="col-lg-8 connectedSortable">
+            <div class="box " style="height:auto;width:100%; border-top:none !important;background-color:yellowgreen;margin-bottom:0px !important;">
+                <div class="box-body">
+
+
+                    <center style="color:white!important;font-size:18px !important">
+
+                        <b>@Sustainability%</b> sustainability sourced cocoa from @Model.YearStart<br />
+                        <b>@Convert.ToDecimal(@DataAccessLayer.KPIData.AllFarmers()).ToString("#,##0")</b> cocoa farmers reached in <b> @Convert.ToDecimal(@DataAccessLayer.KPIData.AllCommunities()).ToString("#,##0")</b> communities by the end of @DateTime.Now.Year
+                    </center>
+
+
+                </div>
+            </div>
+            <div class="box " style="height:auto;width:100%; border-top:none !important;background-color:white">
+                <div class="box-header" style="text-align:center !important;">
+                    <div class="col-md-4">
+                        <img src="~/Images/philippines.png" class="rounded-0" style="width:100px;height:100px;" />
+                    </div>
+                    <div class="col-md-8">
+                        <h1 class="" style="color:brown!important;font-weight:700;">CACAO INDUSTRY ROADMAP @Model.YearStart - @Model.YearEnd</h1>
+                    </div>
+
+
+                </div>
+
+
+                <div class="box-footer">
+                    <div class="col-md-1">
+                        <i class="fa fa-map-pin " style="font-size:3.5em;color:brown !important;margin-left:20px;"></i>
+                    </div>
+                    <div class="col-md-2">
+                        <h5 class="" style="font-weight:900 !important;color:brown !important;">REPUBLIC OF <br />THE PHILIPPINES</h5>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="" style="font-weight:900 !important;color:brown !important;">
+                            @Convert.ToDecimal(@DataAccessLayer.KPIData.AllFarmers()).ToString("#,##0")<small> farmers</small>
+                            <br>
+                            @Convert.ToDecimal(@DataAccessLayer.KPIData.AllCommunities()).ToString("#,##0")<small> communities</small>
+                        </h5>
+                    </div>
+                    <div class="col-md-3">
+
+                        <h5 class="" style="font-weight:900 !important;color:brown !important;">
+                            @{
+                                double MetricTonne = @DataAccessLayer.KPIData.AllProductions() * .001;
+                            }
+                            @Convert.ToDecimal(@MetricTonne).ToString("#,##0")&nbsp;(MT)<small> Volume of production</small>
+                            <br>
+                            @Convert.ToDecimal(@DataAccessLayer.KPIData.AllTrees()).ToString("#,##0")<small> Trees Planted</small>
+                        </h5>
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="" style="font-weight:900 !important;color:brown !important;">
+                            @Convert.ToDecimal(@DataAccessLayer.KPIData.AllFarms()).ToString("#,##0")<small> Farms</small>
+                            <br>
+                            @Convert.ToDecimal(@DataAccessLayer.KPIData.AllJobs()).ToString("#,##0") <small> Jobs created</small>
+                        </h5>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box " style="height:100%;border-top:none !important;background-color:white;display:flex !important;flex-direction:column;">
+                <div class="col-md-12">
+                    <div class="box " style="height:auto;border-top:none !important;background-color:yellowgreen;padding-left:10px;padding-right:10px;margin-bottom:0px !important;">
+
+
+                        <center style="color:white!important;font-size:18px !important;">
+                            By the end of @Model.YearEnd, Cocoa Life Distributed <b>@DataAccessLayer.KPIData.ALlSeeds()</b> total improved seedlings:
+
+                        </center>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="box " style="height:auto;border-top:none !important;">
+
+
+                        <div class="box-body">
+                            <table class="table " style="border:none !important;">
+                                @{
+                                    var _regions = DataAccessLayer.RegionData.ListAll();
+                                }
+                                <thead class="" style="color:orange !important;font-weight:700 !important;font-size:medium !important;">
+                                    <tr>
+                                        <th width="20%">
+                                            Region
+                                        </th>
+
+                                        @foreach (int year in ViewBag.YearCovered)
+                                        {
+                                            <th style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                @year
+                                            </th>
+                                        }
+                                        @*<th style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                2016
+                                            </th>
+                                            <th style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                2017
+                                            </th>
+                                            <th style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                2018
+                                            </th>
+                                            <th style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                2019
+                                            </th>
+                                            <th style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                2020
+                                            </th>
+                                            <th style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                2021
+                                            </th>
+                                            <th style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                2022
+                                            </th>*@
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in _regions)
+                                    {
+                                        <tr>
+                                            <th class="" id="" style="color:brown;font-weight:500 !important;font-size: small !important;">
+                                                Region @item.Code (@item.Name)
+                                            </th>
+                                            @foreach (int year2 in ViewBag.YearCovered)
+                                            {
+                                                <td style="color:purple;font-weight:700 !important;font-size:small !important;font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                    @Convert.ToDecimal(@DataAccessLayer.KPIData.GetSeedRegionPerYear(@item.RegionId, @year2)).ToString("#,##0")
+                                                </td>
+
+                                            }
+                                            @*<td style="color:purple;font-weight:700 !important;font-size:small !important;font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                    @Convert.ToDecimal(@DataAccessLayer.KPIData.GetSeedRegionPerYear(@item.RegionId, 2016)).ToString("#,##0")
+                                                </td>
+                                                <td style="color:purple;font-weight:700 !important;font-size:small !important;font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                    @Convert.ToDecimal(@DataAccessLayer.KPIData.GetSeedRegionPerYear(@item.RegionId, 2017)).ToString("#,##0")
+                                                </td>
+                                                <td style="color:purple;font-weight:700 !important;font-size:small !important;font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                    @Convert.ToDecimal(@DataAccessLayer.KPIData.GetSeedRegionPerYear(@item.RegionId, 2018)).ToString("#,##0")
+                                                </td>
+                                                <td style="color:purple;font-weight:700 !important;font-size:small !important;font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                    @Convert.ToDecimal(@DataAccessLayer.KPIData.GetSeedRegionPerYear(@item.RegionId, 2019)).ToString("#,##0")
+                                                </td>
+                                                <td style="color:purple;font-weight:700 !important;font-size:small !important;font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                    @Convert.ToDecimal(@DataAccessLayer.KPIData.GetSeedRegionPerYear(@item.RegionId, 2020)).ToString("#,##0")
+                                                </td>
+                                                <td style="color:purple;font-weight:700 !important;font-size:small !important;font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                    @Convert.ToDecimal(@DataAccessLayer.KPIData.GetSeedRegionPerYear(@item.RegionId, 2021)).ToString("#,##0")
+                                                </td>
+                                                <td style="color:purple;font-weight:700 !important;font-size:small !important;font-family:Verdana, Geneva, Tahoma, sans-serif">
+                                                    @Convert.ToDecimal(@DataAccessLayer.KPIData.GetSeedRegionPerYear(@item.RegionId, 2022)).ToString("#,##0")
+                                                </td>*@
+                                        </tr>
+                                    }
+
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+}
+else
+{
+
+}
+
+<script type="text/javascript">
+
+
+     function initMap() {
+        var PH = { lat: 12.879721, lng: 121.774017 }
+        var map;
+        var LabelArray = @Html.Raw(Json.Encode(@ViewBag.Label));
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: PH
+         });
+
+
+         $.get("@Url.Action("GetAllLocation", "Farms")", function (data, status) {
+            var marker = [];
+            var contentString = [];
+            var infowindow = [];
+            for (var i = 0; i < data.length; i++) {
+                marker[i] = new google.maps.Marker({
+                    position: { lat: data[i].Latitude, lng: data[i].Longititude },
+                    map: map,
+                    label: LabelArray[i % LabelArray.length]
+                });
+                contentString[i] = '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    '</div>' +
+                    '<h1 id="firstHeading" class="firstHeading">' + data[i].Barangay + '</h1>' +
+                    '<div id="bodyContent">' +
+                    '<p><b>' + data[i].completeAddress + '</b>';
+                    
+                infowindow[i] = new google.maps.InfoWindow({
+                    content: contentString[i]
+                });
+                var markerValue = marker[i];
+                google.maps.event.addListener(marker[i], 'mouseover', (function (markerValue, i) {
+                return function () {
+                    infowindow[i].open(map, marker[i]);
+
+                }
+                })(marker[i], i));
+                google.maps.event.addListener(marker[i], 'mouseout', (function (markerValue, i) {
+                return function () {
+                    infowindow[i].close();
+                }
+                })(marker[i], i));
+            }
+        })
+
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5KYqId9PhQ4cN3_IKL04qpd1Hoc3_W1c&callback=initMap">
+</script>

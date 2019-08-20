@@ -1,0 +1,685 @@
+﻿@model Entities.Target
+@{
+    ViewBag.Title = "PNCIC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .content-wrapper {
+        background-color: white !important;
+    }
+
+    .content-header {
+        display: none;
+    }
+
+    tr, th, td {
+        padding: 10px !important;
+    }
+</style>
+
+<div class="box-header with-border">
+    <h3 class="box-title">PNCIC Directory</h3>
+</div>
+
+<table style="width:100%;">
+    <tr>
+        <th>NAME</th>
+        <th>POSITION</th>
+        <th>ORGANIZATION</th>
+        <th>DESIGNATION</th>
+        <th>CONTACT DETAILS</th>
+    </tr>
+    <tr>
+        <td>Mr. Valente D. Turtur </td>
+        <td>Chairperson</td>
+        <td>Cacao Industry Dev’t Assn of Mindanao Inc.</td>
+        <td>Executive Director </td>
+        <td>
+            09173778756<br />
+            v_turtur@yahoo.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>USec. Evelyn Lavina </td>
+        <td>Co-Chairperson</td>
+        <td>Dept. of Agriculture </td>
+        <td>Undersecretary </td>
+        <td>
+            (02) 926 8444<br />
+            agri.hvc.da@gmail.com
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Mrs. Charita Puentespina
+        </td>
+        <td>
+            Vice-Chair (Private Sector)
+        </td>
+        <td>
+            Cacao Industry Council of Southern Mindanao
+        </td>
+        <td>
+            Chairperson
+        </td>
+        <td>
+            09176327686
+            <br />
+            puetespinafarms@yahoo.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            USec. Zenaida Maglaya
+        </td>
+        <td>
+            Vice-Chair (Gov’t Sector)
+        </td>
+        <td>
+            Dept. of Trade and Industry
+        </td>
+        <td>
+            Undersecretary
+        </td>
+        <td>
+            (02) 751 3335
+            <br />
+            rodg@dti.gov.ph
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            ARD Edwin O. Banquerigo
+        </td>
+        <td>
+            Secretariat
+        </td>
+        <td>
+            Dept. of Trade and Industry
+        </td>
+        <td>
+            Assistant Regional Director
+        </td>
+        <td>
+            (082) 224 0511 loc. 208
+            <br />
+            r11.davaocity@dti.gov.ph
+
+        </td>
+    </tr>
+    <tr>
+        <th colspan="5">
+            GOVERNMENT SECTOR:
+        </th>
+    </tr>
+    <tr>
+        <td>
+            Usec. Janet Lopoz
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            Mindanao Dev’t Authority
+        </td>
+        <td>
+            Undersecretary
+        </td>
+        <td>
+            (082) 221 8109
+
+
+            <br />
+            info@minda.gov.ph
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Dr. Reynaldo V. Ebora
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            Dept. of Science and Technology
+        </td>
+        <td>
+            Executive Dir., DOST PCAARRD
+        </td>
+        <td>
+            (049) 536 4990
+
+
+            <br />
+            r.ebora@pcaarrd.dost.gov.ph
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            Dept. of Environment and Natural Resources
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            (02) 920-6215; 927-4788; 925-2139
+            <br />
+            invitation@denr.gov.ph
+            hea@denr.gov.ph
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            USec. Rosalinda Bistoyong
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            Dept. of Agrarian Reform
+        </td>
+        <td>
+            Undersecretary
+        </td>
+        <td>
+            (02) 426-7484
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Edgardo S. Luzano
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            Land Bank of the Philippines
+        </td>
+        <td>
+            Dept. Head , LBP
+        </td>
+        <td>
+            (02) 405-7450; 405-7309
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Bartholomew Brillo L. Reynes
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            Small Business Corporation
+        </td>
+        <td>
+            President & CEO
+        </td>
+        <td>
+            (02) 751-1888
+
+
+            <br />
+            breynes@sbgfc.org.ph
+
+        </td>
+    </tr>
+    <tr>
+        <th colspan="5">
+            PRIVATE SECTOR:
+        </th>
+    </tr>
+    <tr>
+        <td>
+            Victorino B. Barona Jr.
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            CAR
+        </td>
+
+        <td colspan="2">
+            09159340038
+
+
+
+
+            <br />
+            Vbbaronajr@gmail.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Atty. Robert Tudayan
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R1-Ilocos Region
+        </td>
+
+        <td colspan="2">
+            09163712021
+
+            <br />
+            tudayanattyrobert@yahoo.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Kay Lactao
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R2-Cagayan Valley
+        </td>
+
+        <td colspan="2">
+            09175218003
+            <br />
+            kk.lactao@gmail.com
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Benigno N. Ricafort
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R3-Central Luzon
+        </td>
+
+        <td colspan="2">
+            Telefax: (63-45) 4580027 Mobile Nos: +(63-917)5628673; +(63-949)1279621; 63(45)4580027
+
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Malou Mendoza
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R4A-CALABARZON
+        </td>
+
+        <td colspan="2">
+            09194009665
+
+
+
+
+
+
+            <br />
+            mendozamalou05@yahoo.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Bernard Sampayan
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R4B-MIMAROPA
+        </td>
+
+        <td colspan="2">
+            09175414945
+
+
+
+
+
+
+            <br />
+            bern_fsampayan@yahoo.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ed Pilapil
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R5-Bicol Region
+        </td>
+
+        <td colspan="2">
+            09175014000
+
+
+
+
+
+
+            <br />
+            edpilapil@gmail.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Engr. Herminigildo Alipat
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R6-Western Visayas
+        </td>
+
+        <td colspan="2">
+            09206097839
+
+
+            <br />
+            herminigildoalipat@yahoo.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Mr. Edu Patiño
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R7-Central Visayas
+        </td>
+
+        <td colspan="2">
+            09176287661
+
+
+
+
+            <br />
+            edu@ralfegourmet.com
+
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Pedro Destura
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R8-Eastern Visayas
+        </td>
+
+        <td colspan="2">
+            09173538613
+
+
+            <br />
+            pdd_villadestura@yahoo.com
+
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Ret. Gen. Angelo Sunglao
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R9-Zamboanga Peninsula
+        </td>
+
+        <td colspan="2">
+            09192916079
+
+
+
+
+
+
+            <br />
+            angelosunglaoii@gmail.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Francisco L. Calotes Jr.
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R10-Northern Mindanao
+        </td>
+
+        <td colspan="2">
+            09051971614
+
+
+
+
+
+
+            <br />
+            francals_58@yahoo.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Charita Puentespina
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R11-Davao Region
+        </td>
+
+        <td colspan="2">
+            09176327686
+
+
+
+
+
+
+            <br />
+            Puetespinafarms@yahoo.com
+
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Mario Flores
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R12-SOCCSKSARGEN
+        </td>
+
+        <td colspan="2">
+            09984803665
+
+
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Christopher H. Lindo
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R13-CARAGA
+        </td>
+
+        <td colspan="2">
+            09177060600
+
+
+
+
+
+
+
+            <br />
+            chrizlindo@yahoo.com
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Juan P. Musa Jr.
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            R18-Negros Island Region
+        </td>
+
+        <td colspan="2">
+            09173023330
+
+
+
+
+
+
+            <br />
+            musajun_mayasuerte@yahoo.com
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dante R. Muyco
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            Cacao Industry Dev’t Assn of Mindanao Inc. (CIDAMI)
+        </td>
+
+        <td colspan="2">
+            President
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Eduardo David
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            Cocoa Foundation of the Philippines, Inc. (CocoaPhil
+        </td>
+
+        <td colspan="2">
+            President
+        </td>
+    </tr>
+    <tr>
+        <th colspan="5">
+            PRIVATE SECTOR:
+        </th>
+    </tr>
+    <tr>
+        <td>
+            Dr. Romulo L. Cena
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            University of Southern Mindanao
+        </td>
+
+        <td colspan="2">
+            Agricultural Research Center
+
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Dr. Calixto M. Protacio
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            University of the Philippines Los Baños
+        </td>
+
+        <td colspan="2">
+            Professor 9, Crop Science Cluster, College of Agriculture
+
+        </td>
+    </tr>
+
+
+
+
+</table>

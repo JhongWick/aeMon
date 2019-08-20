@@ -1,0 +1,392 @@
+﻿@model Entities.KPI
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-md-3">
+</div>
+<div class="col-md-6">
+    <div class="box box-success">
+        <div class="box-header">
+            <h3 class="box-title">Details</h3>
+            <a href="@Url.Action("Index", "KPIs")" class="btn btn-warning pull-right"><i class="fa fa-list"></i>&nbsp;&nbsp;Back to List</a>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+
+                <tbody>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+
+                        <td>
+                            @Html.Raw(Model.Description)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionId)
+                        </th>
+
+                        <td>
+                            @DataAccessLayer.RegionData.returnName(@Model.RegionId)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Quarter)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Quarter)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Year)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.Year)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateAndTime)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.DateAndTime)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserId)
+                        </th>
+
+                        <td>
+                              @DataAccessLayer.UserData.GetUserCompleteName(@Model.UserId)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Hectar)
+                        </th>
+
+                        <td>
+                            @Model.Hectar.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NoOfFarms)
+                        </th>
+
+                        <td>
+                            @Model.NoOfFarms.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NoOfTrees)
+                        </th>
+
+                        <td>
+                            @Model.NoOfTrees.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Production)
+                        </th>
+
+                        <td>
+                            @Model.Production.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Variety)
+                        </th>
+
+                        <td>
+                            @Model.Variety
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VolumeMarket)
+                        </th>
+
+                        <td>
+                            @Model.VolumeMarket.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VolumeInternational)
+                        </th>
+
+                        <td>
+                            @Model.VolumeInternational.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VolumeSoldMarket)
+                        </th>
+
+                        <td>
+                            @Model.VolumeSoldMarket.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VolumeSoldInternational)
+                        </th>
+
+                        <td>
+                            @Model.VolumeSoldInternational.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Male)
+                        </th>
+
+                        <td>
+                            @Model.Male.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Female)
+                        </th>
+
+                        <td>
+                            @Model.Female.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MunicipalitiesEngaged)
+                        </th>
+
+                        <td>
+                            @Model.MunicipalitiesEngaged.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NoOfPostharvest)
+                        </th>
+
+                        <td>
+                            @Model.NoOfPostharvest.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IncomeGenerated)
+                        </th>
+
+                        <td>
+                            @Model.IncomeGenerated.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SMEs)
+                        </th>
+
+                        <td>
+                            @Model.SMEs.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.JobsCreated)
+                        </th>
+
+                        <td>
+                            @Model.JobsCreated.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NoOfFundingAssistance)
+                        </th>
+
+                        <td>
+                            @Model.NoOfFundingAssistance.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NoOfFundingInstitutions)
+                        </th>
+
+                        <td>
+                            @Model.NoOfFundingInstitutions.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NoOfPoliciReforms)
+                        </th>
+
+                        <td>
+                            @Model.NoOfPoliciReforms.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DA)
+                        </th>
+
+                        <td>
+                            @Model.DA.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DENR_NGP)
+                        </th>
+
+                        <td>
+                            @Model.DENR_NGP.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PCA_Kaanib)
+                        </th>
+
+                        <td>
+                            @Model.PCA_Kaanib.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DAR)
+                        </th>
+
+                        <td>
+                            @Model.DAR.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Trainings)
+                        </th>
+
+                        <td>
+                            @Model.Trainings.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FarmesrsTrained)
+                        </th>
+
+                        <td>
+                            @Model.FarmesrsTrained.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IECMaterials)
+                        </th>
+
+                        <td>
+                            @Model.IECMaterials.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LinkagesLocal)
+                        </th>
+
+                        <td>
+                            @Model.LinkagesLocal.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LinkagesInternational)
+                        </th>
+
+                        <td>
+                            @Model.LinkagesInternational.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DiseasesManagement)
+                        </th>
+
+                        <td>
+                            @Model.DiseasesManagement.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GoodAgriculturalPractices)
+                        </th>
+
+                        <td>
+                            @Model.GoodAgriculturalPractices.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CacaoFarmsCertified)
+                        </th>
+
+                        <td>
+                            @Model.CacaoFarmsCertified.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NurseriesAccredited)
+                        </th>
+
+                        <td>
+                            @Model.NurseriesAccredited.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ModelFarms)
+                        </th>
+
+                        <td>
+                            @Model.ModelFarms.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ResearchWorkDeveloped)
+                        </th>
+
+                        <td>
+                            @Model.ResearchWorkDeveloped.ToString("#,##0.00")
+                        </td>
+
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    <!-- /.box -->
+</div>
+<div class="col-md-3">
+</div>
+

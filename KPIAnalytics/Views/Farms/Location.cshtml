@@ -1,0 +1,167 @@
+﻿@using DataAccessLayer;
+
+@model IEnumerable<Entities.Farms>
+
+@{
+    ViewBag.Title = "Location";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+        height: 500px;
+        width: auto;
+    }
+</style>
+
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Farms Location</h3>
+        <br>
+        <div class="form-group">
+           
+            <div class="input-group date">
+                <div class="input-group-addon">
+                    <i class="fa  fa-map-marker"></i>
+                </div>
+                <select class="form-control" id="Farms" onchange="GoLocation(this.value)">
+
+                    <option>--Select--</option>
+                    @foreach (var item in ViewBag.Farms)
+                    {
+                        <option value="@item.FarmsId">@item.completeAddress</option>
+                    }
+
+                </select>
+
+                @*@Html.DropDownList("Farms", new SelectList(@ViewBag.Farms), "-- Select Location --", new { @class = "form-control", onchange = "GoLocation(this.value)" })*@
+                @*<input type="text" class="form-control pull-right " id="Year" required>*@
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+
+        <div id="map"></div>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+
+
+<script>
+
+    $(document).ready(function () {
+        
+    
+    });
+
+
+
+     function initMap() {
+        var PH = { lat: 12.879721, lng: 121.774017 }
+        var map;
+        var LabelArray = @Html.Raw(Json.Encode(ViewBag.Label));
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: PH
+         });
+
+
+         $.get("@Url.Action("GetAllLocation", "Farms")", function (data, status) {
+            var marker = [];
+            var contentString = [];
+            var infowindow = [];
+            for (var i = 0; i < data.length; i++) {
+                marker[i] = new google.maps.Marker({
+                    position: { lat: data[i].Latitude, lng: data[i].Longititude },
+                    map: map,
+                    label: LabelArray[i % LabelArray.length]
+                });
+                contentString[i] = '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    '</div>' +
+                    '<h1 id="firstHeading" class="firstHeading">' + data[i].Barangay + '</h1>' +
+                    '<div id="bodyContent">' +
+                    '<p><b>' + data[i].completeAddress + '</b>';
+                infowindow[i] = new google.maps.InfoWindow({
+                    content: contentString[i]
+                });
+                var markerValue = marker[i];
+                google.maps.event.addListener(marker[i], 'mouseover', (function (markerValue, i) {
+                return function () {
+                    infowindow[i].open(map, marker[i]);
+
+                }
+                })(marker[i]));
+                google.maps.event.addListener(marker[i], 'mouseout', (function (markerValue, i) {
+                return function () {
+                    infowindow[i].close();
+                }
+                })(marker[i]));
+            }
+        })
+
+    }
+
+
+    var map;
+    function initMap(zoomeLevel, latDb, longDb) {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: latDb != null ? latDb : 12.879721, lng: longDb != null ? longDb : 121.774017 },
+            zoom: zoomeLevel != null ? zoomeLevel : 6
+        });
+
+
+
+    }
+
+
+
+    function GoLocation(locationId) {
+
+        $.get("/Farms/GetAllLocationById?id=" + locationId, function (data, status) {
+            
+            initMap(8, data.Latitude, data.Longititude);
+            marker = new google.maps.Marker({
+                position: { lat: data.Latitude, lng: data.Longititude },
+                map: map
+                
+               
+            });
+            contentString = '<div id="content">' +
+                '<div id="siteNotice">' +
+                '</div>' +
+                '<h1 id="firstHeading" class="firstHeading">' + data.Barangay + '</h1>' +
+                '<div id="bodyContent">' +
+                '<p><b>' + data.completeAddress + '</b>';
+            
+            infowindow = new google.maps.InfoWindow({
+                
+                content: contentString
+            });
+            google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+                return function () {
+                    infowindow.open(map, marker);
+                    
+                }
+            })(marker));
+            google.maps.event.addListener(marker, 'mouseout', (function (marker, i) {
+                return function () {
+                    infowindow.close();
+                }
+            })(marker));
+            
+        })
+    }
+
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5KYqId9PhQ4cN3_IKL04qpd1Hoc3_W1c&callback=initMap">
+</script>
+
+

@@ -1,0 +1,291 @@
+﻿@model List<Entities.User>
+    @using DataAccessLayer;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    #myDialog {
+        background-color: white !important;
+    }
+
+    .dataTables_filter {
+        float: left;
+        text-align: left;
+    }
+</style>
+
+
+<div class="box box-warning">
+    <div class="box-header">
+        <h3 class="box-title"><i class="fa fa-user"></i> Users</h3>
+        <a href="#" onclick="AddNew()" class="btn  btn-sm btn-success pull-right"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New User</a>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table style="width:100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+                <tr>
+
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Region</th>
+                    <th>Role</th>
+                    <th>IsDeleted</th>
+                    <th><em class="fa fa-cog"></em></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var entity in Model)
+                {
+                <tr align="center " id="row_@entity.UserId" class="odd gradeX">
+                    <td>@entity.UserName</td>
+                    <td>@entity.FirstName &nbsp; @entity.MiddleName &nbsp; @entity.LastName &nbsp; @entity.NameExt</td>
+                    <td>@RegionData.returnName(@entity.Region)</td>
+                    <td>@RoleData.GetById(UserRoleData.GetByUserId(entity.UserId).RoleId).Name</td>
+                    <td>@entity.IsDeleted</td>
+                    <td class="center">
+                        <a href="#" class="btn btn-success  btn-sm" onclick="EditUser(@entity.UserId)"><i class="glyphicon glyphicon-pencil"></i></a>
+                        @if (entity.IsDeleted == true)
+                        {
+                            <a href="#" id="btnDelete" class="btn btn-danger btn-sm" disabled><i class="glyphicon glyphicon-trash"></i></a>
+                        }
+                        else
+                        {
+                            <a href="#" id="btnDelete" class="btn btn-danger btn-sm" onclick="DeleteUser(@entity.UserId)"><i class="glyphicon glyphicon-trash"></i></a>
+                        }
+                    </td>
+
+                </tr>
+                }
+
+            </tbody>
+
+
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+<!-- /.row -->
+
+<div class="modal fade " id="myModal" style="width:50% !important;margin-left:auto !important;margin-right:auto !important;" data-backdrop="static">
+    <div class="modal-dialog" id="myDialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title" id="modaltitle"></h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv">
+                <span>Add New</span>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+                <a href="#" class="btn btn-success" onclick="DeleteUser()">Confirm</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- DataTables JavaScript -->
+
+
+<script>
+    $(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+        $('#myModal').on("click", "#submitAdd", function () {
+            if (validSubmit('add')) {
+                checkDupicateUsername($("#username").val());
+                if ($("#error-display").text() == 0) {
+                    $('#formAdd').submit();
+                }
+            }
+        });
+        $('#myModal').on("click", "#submitEdit", function () {
+            if (validSubmit('edit')) {
+                if ($("#User").val() != $("#username").val()) {
+                    checkDupicateUsername($("#username").val());
+                } else {
+                    $("#error-display").text("");
+                    $("#error-display").hide();
+                }
+                if ($("#error-display").text().length == 0) {
+                    $('#formEdit').submit();
+                }
+            }
+        });
+        $('#myModal').on("mousedown, mouseleave, focus", "#username", function () {
+            $("#error-display").text("");
+            $("#error-display").hide();
+        });
+        $('#myModal').on("click", "#password-changed", function () {
+            if (typeof ($("#formEdit")) != 'undefined' && $("#formEdit") != null) {
+                if ($('#password-changed').is(':checked')) {
+                    $("#passlbl").show();
+                    $("#password").show();
+                    $("#cpasslbl").show();
+                    $("#confirmpw").show();
+                } else {
+                    $("#password").val("");
+                    $("#confirmpw").val("");
+                    $("#passlbl").hide();
+                    $("#password").hide();
+                    $("#cpasslbl").hide();
+                    $("#confirmpw").hide();
+                }
+            }
+        });
+        $('#myModal').on("blur, change", "#confirmpw", function () {
+            password1 = $('#password').val().trim();
+            password2 = $('#confirmpw').val().trim();
+            if (password1 != password2) {
+                $('#error-display').text("Password and Confirm Password are not equal.");
+                $('#error-display').show();
+            } else {
+                $("#error-display").text("");
+                $("#error-display").hide();
+            }
+        });
+    });
+
+    function checkDupicateUsername(username) {
+        url = "/User/CheckDuplicate"
+        $.ajax({
+            type: "GET",
+            url: url,
+            async: false,
+            data: { username: username },
+            success: function (response) {
+                if (response.success) {
+                    $("#error-display").text("Username already exists")
+                    $("#error-display").show();
+                } else {
+                    $("#error-display").text("");
+                    $("#error-display").hide();
+                }
+            },
+            error: function () { console.log("error: result is null"); }
+        })
+    }
+
+    var isUserDeleted = function () {
+        if ($('#isDeleted').is(':checked')) {
+            $('#isDeleted').val('true');
+        } else {
+            $('#isDeleted').val('false');
+        }
+    }
+
+    var displayEmpID = function () {
+        $('#empID').val($('#employeeID').val());
+    }
+
+    var AddNew = function () {
+        debugger
+        var url = "/User/Add";
+        $("#myModalBodyDiv").load(url, function () {
+            $("#modaltitle").text('Add User');
+            $("#myModal").modal("show");
+            $(".modal-footer").hide();
+            $("#error-display").text("");
+            $("#error-display").hide();
+        });
+    }
+
+    var EditUser = function (id) {
+        var url = "/User/Edit";
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: { UserId: id },
+            success: function (result) {
+                $("#myModalBodyDiv").html(result);
+                $("#myModal").modal("show");
+                $(".modal-title").text('Edit User?');
+                $(".modal-footer").hide();
+                $("#error-display").text("");
+                $("#error-display").hide();
+                $("#passlbl").hide();
+                $("#password").hide();
+                $("#cpasslbl").hide();
+                $("#confirmpw").hide();
+            },
+            error: function () { console.log("error: result is null"); }
+        })
+    }
+
+    var DeleteUser = function (id) {
+        var url = "/User/Delete";
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: { UserId: id },
+            success: function (result) {
+                $("#myModalBodyDiv").html(result);
+                $("#myModal").modal("show");
+                $(".modal-title").text('Delete User?');
+                $(".modal-footer").hide();
+            },
+            error: function () { console.log("error: result is null"); }
+        })
+    };
+
+    function validSubmit(action) {
+        $('#error-display').text("");
+        $('#error-display').hide();
+        valid = true;
+        errorMsg = "";
+        if ($('#Region').children("option:selected").text() == "Select Region...") {
+            debugger
+            valid = false;
+            RegionErrorMsg = "Region";
+        } else {
+            RegionErrorMsg = "";
+        }
+        //if ($('#employeeID').val().trim().length == 0) {
+        //    valid = false;
+        //    emperrorMsg = "EmployeeName ";
+        //} else {
+        //    emperrorMsg = "";
+        //}
+        if ($('#username').val().trim().length == 0) {
+            valid = false;
+            usererrorMsg = "UserName ";
+        } else {
+            usererrorMsg = "";
+        }
+        pwerrorMsg = "";
+        confpwerrorMsg = "";
+        if (action == 'add' || $('#password-changed').is(':checked')) {
+            if ($('#password').val().trim().length == 0) {
+                valid = false;
+                pwerrorMsg = "Password ";
+            }
+            if ($('#password').val().trim() != $('#confirmpw').val().trim()) {
+                valid = false;
+                confpwerrorMsg = "Password and Confirm Password are not equal. ";
+            }
+        }
+        if (valid == false) {
+            errorMsg = RegionErrorMsg + " " + usererrorMsg + " " + pwerrorMsg + " " + confpwerrorMsg;
+            $('#error-display').html("Error! Required field(s): <i>" + errorMsg.trim() + "</i>");
+            $('#error-display').show();
+        }
+        return valid;
+    }
+</script>
+
+
+
+
+
+
+

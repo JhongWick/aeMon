@@ -1,0 +1,176 @@
+﻿@model List<Entities.Role>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<style>
+    #myDialog {
+        background-color: white !important;
+    }
+
+    .dataTables_filter {
+        float: left;
+        text-align: left;
+    }
+</style>
+
+
+<div class="box box-warning">
+    <div class="box-header">
+        <h3 class="box-title"><i class="fa fa-street-view"></i> Roles</h3>
+        <a href="#" onclick="AddNew()" class="btn  btn-sm btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New Roles</a>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table style="width:100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+                <tr>
+                    <th>Role</th>
+                    <th>IsDeleted</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var entity in Model)
+                {
+                    <tr id="row_@entity.RoleId" class="odd gradeX">
+                        <td>@entity.Name</td>
+                        <td>@entity.IsDeleted</td>
+                        <td class="center">
+                            <a href="#" class="btn btn-success  btn-sm" onclick="EditRole(@entity.RoleId)"><i class="glyphicon glyphicon-pencil"></i></a>
+                            @if (entity.IsDeleted == true)
+                            {
+                                <a href="#" id="btnDelete" class="btn btn-danger btn-sm" disabled><i class="glyphicon glyphicon-trash"></i></a>
+                            }
+                            else
+                            {
+                                <a href="#" id="btnDelete" class="btn btn-danger btn-sm" onclick="DeleteRole(@entity.RoleId)"><i class="glyphicon glyphicon-trash"></i></a>
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+<div class="modal fade " id="myModal" style="width:50% !important;margin-left:auto !important;margin-right:auto !important;" data-backdrop="static">
+    <div class="modal-dialog" id="myDialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title" id="modaltitle"></h3>
+            </div>
+            <div class="modal-body" id="myModalBodyDiv">
+                <span>Add New</span>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+                <a href="#" class="btn btn-success" onclick="DeleteUser()">Confirm</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- DataTables JavaScript -->
+<script src="~/vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/vendor/datatables-plugins/dataTables.bootstrap.js"></script>
+<script src="~/vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+<script>
+    $(function () {
+        $("#dataTables-example").DataTable({
+            responsive: true
+        });
+        $("#myModal").on("click", "#submitAdd", function () {
+            if (validSubmit()) {
+                $("#formAdd").submit();
+            }
+        });
+        $("#myModal").on("click", "#submitEdit", function () {
+            if (validSubmit()) {
+                $("#formEdit").submit();
+            }
+        });
+    });
+
+    var isRoleDeleted = function () {
+        if ($('#isDeleted').is(':checked')) {
+            $('#isDeleted').val('true');
+        } else {
+            $('#isDeleted').val('false');
+        }
+    }
+
+    var AddNew = function () {
+        var url = "/Role/Add";
+        $("#myModalBodyDiv").load(url, function () {
+            $("#modaltitle").text('Add Role');
+            $("#myModal").modal("show");
+            $(".modal-footer").hide();
+            $('#error-display').hide();
+        })
+    }
+
+    var EditRole = function (id) {
+        var url = "/Role/Edit";
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: { RoleId: id },
+            success: function (result) {
+                $("#myModalBodyDiv").html(result);
+                $("#myModal").modal("show");
+                $(".modal-title").text('Edit Role?');
+                $(".modal-footer").hide();
+                $('#error-display').hide();
+            }
+        })
+    }
+
+    var DeleteRole = function (id) {
+        var url = "/Role/Delete";
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: { RoleId: id },
+            success: function (result) {
+                $("#myModalBodyDiv").html(result);
+                $("#myModal").modal("show");
+                $(".modal-title").text('Delete Role?');
+                $(".modal-footer").hide();
+            }
+
+        })
+
+    }
+
+    function validSubmit() {
+        $('#error-display').hide();
+        valid = true;
+        if ($('#name').val().trim().length == 0) {
+            valid = false;
+            nameError = "Role";
+        } else {
+            nameError = "";
+        }
+        if (!valid) {
+            errorMsg = nameError;
+            $('#error-display').html("Error! Required field(s): <i>" + errorMsg.trim() + "</i>");
+            $('#error-display').show();
+        }
+        return valid;
+    }
+</script>
+
+
+

@@ -1,0 +1,84 @@
+﻿
+@using DataAccessLayer;
+@model IEnumerable<Entities.Target>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box box-warning">
+    <div class="box-header">
+        <h3 class="box-title">Index</h3>
+        <a href="@Url.Action("Create", "Targets" )" class="btn  btn-sm btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Create Target</a>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    
+                    <th>Year</th>
+                    <th>Target Volume</th>
+                    <th>Farmers</th>
+                    <th>Trees</th>
+                    <th width="20%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.YearStart) - @item.YearEnd
+                    </td>
+
+                    <td>
+                        @item.MetricTonne.ToString("#,##0")
+                    </td>
+                    <td>
+                        @item.Farmers.ToString("#,##0")
+                    </td>
+                    <td>
+                        @item.Trees.ToString("#,##0")
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Targets", new { id = item.TargetId  } )" class="btn  btn-sm btn-warning"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+                        <a href="@Url.Action("Details", "Targets", new { id = item.TargetId  }  )" class="btn  btn-sm btn-success"><i class="fa fa-eye"></i>&nbsp;&nbsp;Details</a>
+                        <a href="@Url.Action("Delete", "Targets", new { id = item.TargetId  }  )" class="btn  btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Region</th>
+                    <th>Year</th>
+                    <th>Target Volume</th>
+
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+
+
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })</script>

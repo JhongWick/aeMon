@@ -1,0 +1,358 @@
+﻿@model IEnumerable<Entities.KPI>
+
+
+<style type="text/css">
+    .table {
+    }
+
+    td, th {
+        padding: 5px !important;
+        border: 1px solid !important;
+    }
+
+    th {
+        text-align: center !important;
+    }
+
+    .valCentered {
+        text-align: center !important;
+    }
+</style>
+<div class="col-md-12">
+    @if (Model.Any())
+    {
+        <div class="header">
+
+            <p style="line-height:normal  !important;">
+
+                <center>
+                    <img src="~/Images/HVCDP_2_Black.png" class="" alt="DA Logo" style="height:160px;">
+                    <h5 style="padding:0px !important;margin:0px !important;">Republic of the Phillipines</h5>
+                    <h3 style="padding:0px !important;margin:0px !important;font-weight:bold;">Department of Agriculture <br />Regional Office @ViewBag.RegionCode</h3>
+                    <h5 style="padding:0px !important;margin:0px !important;">High Value Crops Development and Rural Credit</h5>
+
+
+                    <br />
+
+                    <h3 style="padding:0px !important;margin:0px !important;font-weight:bold;">Accomplishment Report Summary</h3>
+                    <h4 style="padding:0px !important;margin:0px !important;">
+                        @ViewBag.Year
+                    </h4>
+                </center>
+            </p>
+
+
+
+
+
+        </div>
+        <div class="">
+            <table class=" " style="border:1px solid !important;border-color:black !important;width:80%;margin-right:auto;margin-left:auto;">
+
+                <thead style="border:1px solid !important;border-color:black !important;">
+                    <tr style="border:1px solid !important;border-color:black !important;">
+                        <th>KPis</th>
+                        <th>Q1</th>
+                        <th>Q2</th>
+                        <th>Q3</th>
+                        <th>Q4</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody style="border:1px solid !important;border-color:black !important;">
+
+
+                    <tr>
+                        <td>Land area planted </td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.Hectar.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of farms</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.NoOfFarms.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of trees planted</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.NoOfTrees.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Volume of production </td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.Production.ToString("#,##0") </td>
+                        }
+
+
+               
+                    </tr>
+                    <tr>
+                        <td>
+                            Volume processed <br />
+                            a.	For local market<br />
+                            b.	For international market
+                        </td>
+
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.VolumeMarket.ToString("#,##0") <br /> @item.VolumeInternational.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>
+
+                            Volume sold as raw material  <br />
+                            a.	Local  <br />
+                            b.	Export
+                        </td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.VolumeSoldMarket.ToString("#,##0") <br /> @item.VolumeSoldInternational.ToString("#,##0") </td>
+                        }
+
+
+                     
+                    </tr>
+                    <tr>
+                        <td>
+                            Number of farmers/growers  <br />
+                            a.	Male  <br />
+                            b.	Female
+                        </td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.Male.ToString("#,##0") <br /> @item.Female.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of municipalities engaged</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.MunicipalitiesEngaged.ToString("#,##0") </td>
+                        }
+
+
+              
+                    </tr>
+                    <tr>
+                        <td>Number of nurseries </td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.NumberOfNurseries.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of postharvest facilities utilized</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.NoOfPostharvest.ToString("#,##0") </td>
+                        }
+
+                    </tr>
+                    <tr>
+                        <td>Income generated</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.IncomeGenerated.ToString("#,##0.00") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of SMEs created</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.SMEs.ToString("#,##0") </td>
+                        }
+
+
+       
+                    </tr>
+                    <tr>
+                        <td>Number of jobs created</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.JobsCreated.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of funding assistance or loans approved and released</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.NoOfFundingAssistance.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of funding institutions/organizations</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.NoOfFundingInstitutions.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of policy reforms instituted</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.NoOfPoliciReforms.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Number of seedlings distributed  <br />
+                            a.	DA  <br />
+                            b.	DENR-NGP  <br />
+                            c.	PCA-Kaanib  <br />
+                            d.	DAR
+                        </td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.DA.ToString("#,##0") <br /> @item.DENR_NGP.ToString("#,##0") <br /> @item.PCA_Kaanib.ToString("#,##0") <br /> @item.DAR.ToString("#,##0") </td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of techno trainings/seminar conducted</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.Trainings.ToString("#,##0")</td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of farmers trained </td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.FarmesrsTrained.ToString("#,##0")</td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of IEC materials distributed</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.IECMaterials.ToString("#,##0")</td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Number of linkages established  <br />
+                            a.	Local  <br />
+                            b.	International
+                        </td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.LinkagesLocal.ToString("#,##0") <br /> @item.LinkagesInternational.ToString("#,##0")</td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Percentage of farmers who apply pests and diseases management</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.DiseasesManagement.ToString("#,##0")</td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Percentage of farmers who apply Good Agricultural Practices( GAPs)</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.GoodAgriculturalPractices.ToString("#,##0")</td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of cacao farms certified</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.CacaoFarmsCertified.ToString("#,##0")</td>
+                        }
+
+
+                      
+                    </tr>
+                    <tr>
+                        <td>Number of nurseries accredited </td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.NurseriesAccredited.ToString("#,##0")</td>
+                        }
+
+
+                      
+                    </tr>
+
+                    <tr>
+                        <td>Number of model farms and learning/demo sites established</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.ModelFarms.ToString("#,##0")</td>
+                        }
+
+
+                    </tr>
+                    <tr>
+                        <td>Number of research works developed</td>
+                        @foreach (var item in Model)
+                        {
+                            <td class="valCentered">@item.ResearchWorkDeveloped.ToString("#,##0")</td>
+                        }
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+          
+        </div>
+    }
+    else
+    {
+        <div class="header">
+
+            <p style="line-height:normal  !important;">
+
+                <center>
+
+                    <h3 style="padding:0px !important;margin:0px !important;font-weight:bold;">No Results Found</h3>
+                </center>
+            </p>
+        </div>
+
+    }
+</div>

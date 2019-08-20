@@ -1,0 +1,246 @@
+﻿@model Entities.Target
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-md-3">
+</div>
+<div class="col-md-6">
+    <div class="box box-danger">
+        <div class="box-header">
+            <h3 class="box-title">Details</h3>
+            <a href="@Url.Action("Index", "Targets")" class="btn btn-warning pull-right"><i class="fa fa-list"></i>&nbsp;&nbsp;Back to List</a>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="example1" class="table table-bordered table-striped">
+
+                <tbody>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+
+                        <td>
+                            @Html.Raw(Model.Description)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearStart)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.YearStart)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.YearEnd)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.YearEnd)
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MetricTonne)
+                        </th>
+
+                        <td>
+                            @Model.MetricTonne.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Farmers)
+                        </th>
+
+                        <td>
+                            @Model.Farmers.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Trees)
+                        </th>
+
+                        <td>
+                            @Model.Trees.ToString("#,##0.00")
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionI)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionI) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionII)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionII) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionIII)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionIII) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionIVa)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionIVa) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionIVb)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionIVb) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionV)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionV) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionVI)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionVI) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionVII)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionVII) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionVIII)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionVIII) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionIX)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionIX) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionX)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionX) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionXI)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionXI) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionXII)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionXII) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionXIII)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionXIII) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionNCR)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionNCR) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionCAR)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionCAR) %
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RegionARMMM)
+                        </th>
+
+                        <td>
+                            @Html.DisplayFor(model => model.RegionARMMM) %
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+            <!-- /.box-body -->
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-actions no-color" style="padding-top:20px !important;">
+                    <input type="submit" value="Delete" class="btn btn-danger pull-left" />
+                </div>
+            }
+        </div>
+    </div>
+    <!-- /.box -->
+</div>
+<div class="col-md-3">
+</div>
+
+

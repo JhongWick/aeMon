@@ -1,0 +1,97 @@
+﻿@model Entities.User
+<form id="formEdit" action="/User/Edit" method="post" class="form-horizontal">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <div class="form-group">
+            @*<label  class="col-md-2 control-label">User</label>*@
+            @*<div class="col-md-10">
+            <input id="EmployeeName" type="text" class="form-control" disabled value="@eProcurement.DAL.UserData.GetbyName(Model.EmployeeID)">
+        </div>*@
+            @*<label for="EmpID" class="col-md-2 control-label">EmployeeID</label>*@
+            @*<div class="col-md-10">
+            <input id="employeeID" disabled type="text" class="form-control" value="@Model.EmployeeID">
+        </div>*@
+            
+            @Html.HiddenFor(model => model.FirstName)
+            @Html.HiddenFor(model => model.MiddleName)
+            @Html.HiddenFor(model => model.LastName)
+            @Html.HiddenFor(model => model.NameExt)
+            @Html.HiddenFor(model => model.Email)
+            @Html.HiddenFor(model => model.ContactNumber)
+
+            <label for="UserName" class="col-md-2 control-label">UserName</label>
+            <div class="col-md-10">
+                <input type="text" id="username" name="UserName" class="form-control" value="@Model.UserName">
+            </div>
+            <label for="Region" class="col-md-2 control-label">Region</label>
+            <div class="col-md-10">
+                <select id="Region" class="form-control" name="Region">
+                    <option value="">Select Region...</option>
+                    @foreach (Entities.Region item in ViewBag.Region)
+                    {
+                        if (item.RegionId == Model.Region)
+                        {
+                            <option value="@item.RegionId" selected>@item.Name - @item.Code</option>
+
+                        }
+                        else
+                        {
+                            <option value="@item.RegionId">@item.Name - @item.Code</option>
+                        }
+
+                    }
+                </select>
+            </div>
+            <label for="roleid" class="col-md-2 control-label">User Role</label>
+            <div class="col-md-10">
+                <select name="RoleId" id="roleid" class="form-control">
+                    @foreach (Entities.Role roles in DataAccessLayer.RoleData.ListAll())
+                    {
+                        if (roles.RoleId == ViewBag.Role)
+                        {
+                            <option class="form-control" name="RoleId" id="RoleId" value="@roles.RoleId" selected>@roles.Name</option>
+                        }
+                        else
+                        {
+                            <option class="form-control" name="RoleId" id="RoleId" value="@roles.RoleId">@roles.Name</option>
+                        }
+                    }
+                </select>
+
+            </div>
+            <div class="row">
+                <label for="Delete" class="col-md-2 control-label">Delete</label>
+                <div class="col-md-10" style="margin-top: 7px">
+                    <input onclick="isUserDeleted()" id="isDeleted" @if (Model.IsDeleted) { <text> checked</text> }
+                           value="@if (Model.IsDeleted) { <text>true</text> } else { <text>false</text> } "
+                           class="form-group-sm text-left" type="checkbox" name="IsDeleted" />
+                </div>
+            </div>
+            <div class="row">
+                <label for="password-changed" class="col-md-2 control-label">Change Password?</label>
+                <div class="col-md-10">
+                    <input id="password-changed" value="False" class="form-group-sm text-left" type="checkbox" />
+                </div>
+            </div>
+            <label id="passlbl" for="password" class="col-md-2 control-label">Password</label>
+            <div class="col-md-10">
+                <input type="password" id="password" name="Password" class="form-control" value="" placeholder="Password">
+            </div>
+            <label id="cpasslbl" for="confirmpw" class="col-md-2 control-label">Confirm Password</label>
+            <div class="col-md-10">
+                <input id="confirmpw" type="password" class="form-control" placeholder="Confirm password">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10 col-md-offset-2">
+                <button type="reset" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button type="button" id="submitEdit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+        <input type="hidden" class="form-control" id="User" value="@Model.UserName" />
+        <input type="hidden" name="UserId" class="form-control" id="UserId" value="@Model.UserId" required />
+        <div class="alert alert-danger" id="error-display"></div>
+    </fieldset>
+</form>
+
+

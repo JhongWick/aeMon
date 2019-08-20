@@ -1,0 +1,205 @@
+﻿@model Entities.Farms
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.FarmsId)
+    @Html.HiddenFor(model => model.UniqueId)
+    @Html.HiddenFor(model => model.KPIId)
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <h2 class="box-title">Edit</h2>
+           
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Region</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="fa fa-bullseye"></i>
+                            </div>
+
+                            @*<label class="form-control">@DataAccessLayer.RegionData.returnName(@DataAccessLayer.UserData.Fetch(@Authentication.CurrentUser.UserId).Region)</label>
+                                @Html.Hidden("RegionId", @DataAccessLayer.UserData.Fetch(@Authentication.CurrentUser.UserId).Region)*@
+                            @*<input type="hidden" id="RegionId" value="@DataAccessLayer.UserData.Fetch(@Authentication.CurrentUser.UserId).Region"/>*@
+                            @*@Html.LabelFor(model => model.Barangay, htmlAttributes: new { @class = "form-control " })*@
+                            @Html.DropDownList("RegionId", null, "-- Select Region --", new { @class = "form-control", required = "required" })
+                            @*<input type="text" class="form-control pull-right " id="Year" required>*@
+                        </div>
+                        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Barangay, htmlAttributes: new { @class = "control-label " })
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            @Html.EditorFor(model => model.Barangay, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "type here" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Barangay, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Municipality, htmlAttributes: new { @class = "control-label " })
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            @Html.EditorFor(model => model.Municipality, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "type here" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Municipality, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Province, htmlAttributes: new { @class = "control-label " })
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            @Html.EditorFor(model => model.Province, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "type here" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Province, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Search Address for GEO Location</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-address-book"></i>
+                            </div>
+                            <input type="text" class="form-control" placeholder="type here" id="address" required>
+
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+
+
+                        <button type="button" class="btn btn-sm btn-primary" id="SearchAddress"><i class="fa fa-search">&nbsp;Find</i></button>
+
+                        @*@Html.EditorFor(model => model.Longititude, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "type here" } })
+                            @Html.ValidationMessageFor(model => model.Longititude, "", new { @class = "text-danger" })*@
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Complete Address</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-list"></i>
+                            </div>
+
+                            @Html.EditorFor(model => model.completeAddress, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly = "readonly" } })
+                        </div>
+                        @Html.ValidationMessageFor(model => model.completeAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Longitude</label>
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            @Html.EditorFor(model => model.Longititude, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly = "readonly" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Longititude, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Latitude, htmlAttributes: new { @class = "control-label " })
+                        <div class="input-group date">
+                            <div class="input-group-addon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            @Html.EditorFor(model => model.Latitude, new { htmlAttributes = new { @class = "form-control", required = "required", @readonly = "readonly" } })
+
+                        </div>
+                        @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <button type="submit" id="Farmbutton" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Save</button>
+            <a href="@Url.Action("Index", "Farms")" class="btn btn-warning"><i class="fa fa-list"></i>&nbsp;&nbsp;Back to List</a>
+        </div>
+    </div>
+    <!-- /.box -->
+</form>
+
+
+<script type="text/javascript">
+
+
+
+
+
+    $('#SearchAddress').click(function () {
+        var address = $('#address').val();
+        if (address != '') {
+            $.ajax({
+                url: 'https://maps.googleapis.com/maps/api/geocode/json',
+                data: {
+                    sensor: false,
+                    address: address,
+                    key: "AIzaSyAWw2Rmt_1nWtZ9mz64yOm3f3PEMQOHBkQ",
+                    componentRestrictions: { country: 'ph' },
+                    region: "ph"
+                },
+                success: function (data) {
+                    debugger
+
+                    $('#Latitude').val(data.results[0].geometry.location.lat);
+                    $('#Longititude').val(data.results[0].geometry.location.lng);
+                    $('#completeAddress').val(data.results[0].formatted_address);
+
+                },
+                error: function (ex) {
+                    Swal.fire({
+                        title: '<strong><h2>System ALert</h2></strong>',
+                        html: '<h4>Unable to find address:</h4>' + ex,
+                        type: 'info',
+                        confirmButtonText: 'OK'
+                    })
+                    
+                    $('#Latitude').val("");
+                    $('#Longititude').val("");
+                    $('#completeAddress').val("");
+                }
+            });
+        }
+        else {
+            Swal.fire({
+                title: '<strong><h2>System ALert</h2></strong>',
+                html: '<h4>Address box has no value:</h4>',
+                type: 'info',
+                confirmButtonText: 'OK'
+            })
+
+           
+        }
+
+    });
+
+
+</script>
+@*<script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWw2Rmt_1nWtZ9mz64yOm3f3PEMQOHBkQ">
+    </script>*@

@@ -1,0 +1,36 @@
+﻿@media print {
+    @page {
+        /*margin-top:20px;
+        margin-left:20px;
+        margin-right:20px;*/
+        margin: 1cm;
+        size: portrait;
+
+        /*@bottom-center {
+            counter-increment: page;
+            counter-reset: page 1;
+            content: "Page " counter(page) " of " counter(pages);
+        }*/
+    }
+
+    .header {
+        position: relative;
+        top:0px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    /*.footer:after {
+        counter-increment: page;
+        counter-reset: page 1;
+        content: "Page " counter(page) " of " counter(pages);
+    }*/
+}

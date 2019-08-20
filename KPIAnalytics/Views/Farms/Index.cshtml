@@ -1,0 +1,88 @@
+﻿@using DataAccessLayer;
+
+@model IEnumerable<Entities.Farms>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box box-warning">
+    <div class="box-header">
+        <h3 class="box-title">Index</h3>
+        <a href="@Url.Action("Create", "Farms" )" class="btn  btn-sm btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Create Farms</a>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Region</th>
+                    <th>Barangay</th>
+                    <th>Municipality</th>
+                    <th>Province</th>
+                    
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @RegionData.Fetch(item.RegionId).Name
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Barangay)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Municipality)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Province)
+                        </td>
+
+                       
+
+                        <td>
+                            <a href="@Url.Action("Edit", "Farms", new { id = item.FarmsId  } )" class="btn  btn-sm btn-warning"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+                            <a href="@Url.Action("Details", "Farms", new { id = item.FarmsId  }  )" class="btn  btn-sm btn-success"><i class="fa fa-eye"></i>&nbsp;&nbsp;Details</a>
+                            <a href="@Url.Action("Delete", "Farms", new { id = item.FarmsId  }  )" class="btn  btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Region</th>
+                    <th>Barangay</th>
+                    <th>Municipality</th>
+                    <th>Province</th>
+
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+
+
+<script>
+$(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })</script>
+

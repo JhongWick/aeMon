@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KPIAnalytics", "KPIAnalytics\KPIAnalytics.csproj", "{1A57DE8F-3346-4191-A9A2-C75997BCF2F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{16D59DC5-7D28-44FE-8C31-213583824691}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{023B0EE3-C73F-4736-BAA8-732BE8B88217}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A57DE8F-3346-4191-A9A2-C75997BCF2F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A57DE8F-3346-4191-A9A2-C75997BCF2F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A57DE8F-3346-4191-A9A2-C75997BCF2F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A57DE8F-3346-4191-A9A2-C75997BCF2F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16D59DC5-7D28-44FE-8C31-213583824691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D59DC5-7D28-44FE-8C31-213583824691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D59DC5-7D28-44FE-8C31-213583824691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D59DC5-7D28-44FE-8C31-213583824691}.Release|Any CPU.Build.0 = Release|Any CPU
+		{023B0EE3-C73F-4736-BAA8-732BE8B88217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{023B0EE3-C73F-4736-BAA8-732BE8B88217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{023B0EE3-C73F-4736-BAA8-732BE8B88217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{023B0EE3-C73F-4736-BAA8-732BE8B88217}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,125 @@
+﻿@using DataAccessLayer;
+
+@model IEnumerable<Entities.KPI>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="box box-warning">
+    <div class="box-header">
+        <h3 class="box-title">Index</h3>
+        <a href="@Url.Action("Create", "KPIs" )" class="btn  btn-sm btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;Create Key Performace Indicators</a>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Region</th>
+                    <th>Year - Quarter</th>
+                    <th>Date Created</th>
+                    <th>Author</th>
+                    <th>Production</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @RegionData.Fetch(item.RegionId).Name
+                        </td>
+
+
+                        @{
+                            if (item.Quarter == 1)
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Year) -1st Quarter
+                                </td>
+                            }
+                            else if (item.Quarter == 2)
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Year) -2nd Quarter
+                                </td>
+                            }
+                            else if (item.Quarter == 3)
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Year) -3rd Quarter
+                                </td>
+                            }
+                            else if (item.Quarter == 4)
+                            {
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Year) -4th Quarter
+                                </td>
+                            }
+
+                        }
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateAndTime)
+                        </td>
+                        <td>
+                            @{
+                                var _user = UserData.FetchUser(item.UserId);
+                            }
+                            @(_user.FirstName == null ? "" : _user.FirstName)
+                            @(_user.MiddleName == null ? "" : _user.MiddleName)
+                            @(_user.LastName == null ? "" : _user.LastName)
+                            @(_user.NameExt == null ? "" : _user.NameExt)
+                            (@(_user.UserName))
+
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Production)
+                        </td>
+
+                        <td>
+                            <a href="@Url.Action("Edit", "KPIs", new { id = item.KPIId  } )" class="btn  btn-sm btn-warning"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Edit</a>
+                            <a href="@Url.Action("Details", "KPIs", new { id = item.KPIId  }  )" class="btn  btn-sm btn-success"><i class="fa fa-eye"></i>&nbsp;&nbsp;Details</a>
+                            <a href="@Url.Action("Delete", "KPIs", new { id = item.KPIId  }  )" class="btn  btn-sm btn-danger"><i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Region</th>
+                    <th>Year - Quarter</th>
+                    <th>Date Created</th>
+                    <th>Author</th>
+                    <th>Production</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+
+
+<script>
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })</script>
