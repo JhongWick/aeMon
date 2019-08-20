@@ -6889,7 +6889,6 @@
     <Content Include="Images\grid-world.png" />
     <Content Include="Images\home-page.png" />
     <Content Include="Images\houses.png" />
-    <Content Include="Images\HVCDP logo.jpg" />
     <Content Include="Images\HVCDP_2.png" />
     <Content Include="Images\HVCDP_2_Black.png" />
     <Content Include="Images\HVCDP_logo.jpg" />
@@ -7871,6 +7870,7 @@
     <Content Include="plugins\filepond\package.json" />
     <Content Include="plugins\filepond\README.md" />
     <Content Include="File\Roadmap-2017.pdf" />
+    <None Include="Properties\PublishProfiles\COCOAnalytics - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\html2canvas.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

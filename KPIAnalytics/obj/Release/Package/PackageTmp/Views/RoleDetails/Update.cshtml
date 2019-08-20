@@ -1,0 +1,99 @@
+﻿
+@model List<Entities.Role>
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Content/tg.css" rel="stylesheet" />
+<link href="~/Content/toggle2.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-toggle.css" rel="stylesheet" />
+
+
+<script src="~/Scripts/roledetails.js"></script>
+
+
+<div class="box box-warning">
+    <div class="box-header">
+        <h3 class="box-title">Role Details</h3>
+        <button type="button" class="btn btn-info btn-sm pull-right" Onclick="Save()">
+            <span class="glyphicon glyphicon-floppy-save"></span>&nbsp; Save
+        </button>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="col-md-3 form-group-sm">
+            <div style="height:42px"></div>
+            <table id="RoleTbl" class="table table-striped table-hover table-bordered" style="text-align:start;">
+                <thead >
+                    <tr >
+                        <th>Roles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Entities.Role role in Model)
+                    {
+                        <tr><td onmouseover='this.style.cursor = "pointer"' onclick="clicsk(@role.RoleId,this)">@role.Name <div class="loader pull-right"> </div></td></tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><input id="RoleId" type="hidden" value="" /></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="col-md-9 form-group-sm" style="border-left:2px solid #ffd800">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group-sm" id="panel">
+                        <table id="ModulesTbl" class="table table-striped table-hover table-bordered" style="text-align:start;min-width:100%">
+                            <thead>
+                                <tr >
+                                    <th style="display:none;"></th>
+                                    <th style="display:none;"></th>
+                                    <th>Modules</th>
+                                    <th width="15%">Is Allow</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group-sm">
+
+            </div>
+        </div>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+
+<div class="row" style="height:50px;"></div>
+
+<script>
+    function clicsk(id, e) {
+        $('#RoleId').val(id); changeRole(e);
+    }
+</script>
+
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $('#ModulesTbl').DataTable({
+            responsive: true
+
+        });
+    });
+</script>
+

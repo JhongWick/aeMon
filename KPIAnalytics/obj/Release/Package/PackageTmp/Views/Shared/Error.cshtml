@@ -1,0 +1,89 @@
+﻿@using DataAccessLayer;
+@using Entities;
+
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>KPI Analytics</title>
+
+
+    <link href="~/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link href="~/bower_components/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/dist/css/AdminLTE.min.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+
+
+
+
+</head>
+<!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+<body class="">
+
+
+    @if (Model != null)
+    {
+        <h3>@Model.Exception.GetType().Name</h3>
+        <pre>
+        @Model.Exception.ToString()
+    </pre>
+        <p>
+            thrown in @Model.ControllerName @Model.ActionName
+        </p>
+    }
+
+    @if (!Authentication.IsAuthenticated)
+    {
+        Response.Redirect(Url.Action("Login"));
+    }
+    <div class="error-page" style="padding-top:50px !important;padding-bottom:50px !important">
+        <h2 class="headline text-yellow"><i class="fa fa-warning text-yellow"></i></h2>
+        <div class="error-content" style="margin-left: 130px;">
+            <h3>Unauthorized Access.</h3>
+            <p>
+                <a href="@Url.Action("Dashboard","Home")">return to dashboard.</a>
+                @*We could not find the page you were looking for.
+                    Meanwhile,*@
+            </p>
+            @*@{
+
+                    string returnUrl = Request.Params["returnUrl"];
+                    if (returnUrl != null)
+                    {
+                        string decodedUrl = Uri.UnescapeDataString(returnUrl);
+                        <p>you may<a href="@decodedUrl"> Go Back</a> or</p>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Dashboard","Home")">return to dashboard.</a>
+                                        }
+                }*@
+
+
+
+
+
+
+        </div>
+        <!-- /.error-content -->
+    </div>
+    <!-- /.error-page -->
+    <!-- ./wrapper -->
+    <!-- jQuery 3 -->
+
+
+</body>
+</html>

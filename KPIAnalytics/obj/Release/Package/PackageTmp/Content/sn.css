@@ -1,0 +1,18 @@
+﻿ 
+.sidenavv {
+    height: 100%;
+    width: 350px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #efefef;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+} 
+
+@media screen and (max-height: 450px) {
+  .sidenavv {padding-top: 15px;}
+  .sidenavv a {font-size: 18px;}
+} 

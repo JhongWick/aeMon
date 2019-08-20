@@ -1,0 +1,536 @@
+﻿@model Entities.Target
+@{
+    ViewBag.Title = "Regional Directors and HVDP Chairpersons";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .content-wrapper {
+        background-color: white !important;
+    }
+
+    .content-header {
+        display: none;
+    }
+
+    tr, th, td {
+        padding: 10px !important;
+    }
+</style>
+
+<div class="box-header with-border">
+    <h3 class="box-title">Regional Directors and HVDP Chairpersons</h3>
+</div>
+
+<table style="width:100%;">
+    <tr>
+        <th>REGION</th>
+        <th>NAME</th>
+        <th>POSITION/DESIGNATION</th>
+        <th>E-MAIL ADDRESS</th>
+        <th>CONTACT DETAILS</th>
+    </tr>
+
+    <tr>
+        <td>
+            BARMM
+        </td>
+        <td>
+            ALEXANDER G. ALONTO, JR
+        </td>
+        <td>
+            Regional Cabinet Secretary
+        </td>
+        <td>
+            ors_dafarmm@yahoo.com
+        </td>
+        <td>
+            (064) 552-3166 ; 0917-508-0068
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            JALIKA D. MANGAKOP
+        </td>
+        <td>
+            HVCDP Coordinator
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            0917-779-3648
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            CAR
+        </td>
+        <td>
+            DR. CAMERON P. ODSEY
+        </td>
+        <td>
+            OIC-Regional Executive Director
+        </td>
+        <td>
+            da_carfu@yahoo.com
+        </td>
+        <td>
+            (074) 445-4973 / (074) 423-4621
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Region I
+        </td>
+        <td>
+            LUCRESIO R. ALVIAR JR., CESO II
+        </td>
+        <td>
+            Regional Executive Director
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Region II
+        </td>
+        <td>
+            NARCISO A, EDILLO, M.A.ED.
+        </td>
+        <td>
+            Regional Executive Director
+        </td>
+        <td>
+            da_rfu2000@yahoo.com
+        </td>
+        <td>
+            (078) 396-1328 / (078) 844-1031
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            ENGR. BLESITA C. TEGA
+        </td>
+        <td>
+            Focal Person, HVCDP
+        </td>
+        <td>
+            hvcdpregion2@gmail.com
+        </td>
+        <td>
+            (078) 844-0120
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Region III
+        </td>
+        <td>
+            MR. CRISPULO G. BAUTISTA, JR.
+        </td>
+        <td>
+            OIC, Regional Executive Director
+        </td>
+        <td>
+            rfo3.da@gmail.com
+        </td>
+        <td>
+            961-34-72
+            961-26-31
+
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            ENGR. AB P. DAVID
+        </td>
+        <td>
+            HVCDP Coordinator
+        </td>
+        <td>
+            hvcdpregion3@gmail.com
+        </td>
+        <td>
+            961-15-60
+
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Region IV-A
+        </td>
+        <td>
+            ARNEL V. DE MESA, CESO IV
+        </td>
+        <td>
+            Regional Executive Director
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            02) 928-5375;
+            273-2474 to 78 local 4420
+
+
+        </td>
+    </tr>
+
+
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            REDELLIZA A. GRUEZO
+        </td>
+        <td>
+            HVCDP Coordinator
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            02) 928-3919; 929-2797
+            – 0921 989 5785
+
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Region IV-B
+        </td>
+        <td>
+            ANTONIO G. GERUNDIO, CESO III
+        </td>
+        <td>
+            Regional Executive Director
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            927-43-50/ 332-7274
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            CORAZON SINNUNG
+        </td>
+        <td>
+            HVCDP Focal Person
+        </td>
+        <td>
+            hvcdpmimaropa@gmail.com
+        </td>
+        <td>
+            &nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Region V
+        </td>
+        <td>
+            DR. ELENA B. DE LOS SANTOS
+        </td>
+        <td>
+            Regional Executive Director
+        </td>
+        <td>
+            da5ored@yahoo.com
+        </td>
+        <td>
+            (054) 477-0381 (fax)
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            DR. MARY GRACE DP. RODRIGUEZ
+        </td>
+        <td>
+            HVCDP Regional Coordinator
+        </td>
+        <td>
+            da5hvcdp@yahoo.com
+        </td>
+        <td>
+            (054) 477-7263
+
+
+        </td>
+    <tr>
+        <td>
+            Region VI
+        </td>
+        <td>
+            REMELYN R. RECOTER
+        </td>
+        <td>
+            Regional Executive Director
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            337-1262/336-4221
+
+
+        </td>
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            JUNIFER FRADES
+        </td>
+        <td>
+            HVCD Program Coordinator
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            337-8933
+
+
+        </td>
+    <tr>
+        <td>
+            Region VII
+        </td>
+        <td>
+            ATTY.SALVADOR D. DIPUTADO, LL.M.,PH.D
+        </td>
+        <td>
+            Regional Executive Director
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            MS. SUSANA G. KINTANAR
+        </td>
+        <td>
+            HVCDP Focal Person
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            &nbsp;
+
+        </td>
+    <tr>
+        <td>
+            Region VIII
+        </td>
+        <td>
+            MILO D. DELOS REYES, CESE
+        </td>
+        <td>
+            Regional Executive Director
+        </td>
+        <td>
+            da8ored@yahoo.com
+        </td>
+        <td>
+            (053) 321-2024/832-0694
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            FRANCISCO T. DAYAP
+        </td>
+        <td>
+            HVCDP Coordinator
+        </td>
+        <td>
+            da8fod@gmail.com
+        </td>
+        <td>
+            (053) 321-3047/832-0813
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Region IX
+        </td>
+        <td>
+            ENGR. DENNIS H. PALABRICA, DRDEV
+        </td>
+        <td>
+            OIC - Regional Director
+        </td>
+        <td>
+            dhpalabrica@yahoo.com
+        </td>
+        <td>
+            (062) 991-3188
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            GEORGE VALLENTE
+        </td>
+        <td>
+            HVCDP Coordinator
+        </td>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            (062) 991-3188
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Region X
+        </td>
+        <td>
+            CARLENE C. COLLADO, CPA
+        </td>
+        <td>
+            OIC, Regional Executive Director
+        </td>
+        <td>
+            agri10cdo@gmail.com
+        </td>
+        <td>
+            (088) 856-2753 to 55; 231-3497
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Region XI
+        </td>
+        <td>
+            ENGR. RICARDO M. OÑATE, RPAE
+        </td>
+        <td>
+            OIC, Regional Executive Director
+        </td>
+        <td>
+            darfoxi.ored@gmail.com
+        </td>
+        <td>
+            (082) 221-9697 or (082) 226-3625 loc. 1100
+        </td>
+    </tr>
+    <tr>
+        <td>
+            &nbsp;
+        </td>
+        <td>
+            MS. MELANI A. PROVIDO
+        </td>
+        <td>
+            Regional HVCDP Coordinator
+        </td>
+        <td>
+            providomap@yahoo.com
+        </td>
+        <td>
+            (082) 226-3625 loc. 1120; IP No. 1141
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Region XII
+        </td>
+        <td>
+            MILAGROS C. CASIS, CE
+        </td>
+        <td>
+            OIC –Regional Executive Director
+        </td>
+        <td>
+            Ored.darfo12@gmail.com
+        </td>
+        <td>
+            (083-228-3413)
+
+
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Region XIII
+        </td>
+        <td>
+            ABEL JAMES I. MONTEAGUDO
+        </td>
+        <td>
+            Regional Executive Director
+        </td>
+        <td>
+            dacaraga@yahoo.com
+        </td>
+        <td>
+            341-45464420
+
+
+        </td>
+    </tr>
+   
+</table>

@@ -1,0 +1,353 @@
+﻿@model IEnumerable<Entities.Target>
+
+@using DataAccessLayer;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script type="text/javascript">
+
+    printDivCSS = new String('<link href="~/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />')
+    function printDiv(divId) {
+        window.frames["print_frame"].document.body.innerHTML = printDivCSS + document.getElementById(divId).innerHTML;
+        window.frames["print_frame"].window.focus();
+        window.frames["print_frame"].window.print();
+    }
+
+</script>
+<div class="box box-warning">
+    <div class="box-header">
+        @{
+            var role = UserRoleData.GetByUserId(Authentication.CurrentUser.UserId).RoleId;
+        }
+        @if (role == 1 || role == 2)
+        {
+            <h3 class="box-title">Reports (Admin Level)</h3>
+        }
+        else if (role == 3)
+        {
+            <h3 class="box-title">Reports (User Level)</h3>
+        }
+
+
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label>Select Roadplan</label>
+                <select class="form-control" id="target">
+                    <option value="0" selected>----Select----</option>
+                    @foreach (var item in Model)
+                    {
+                        <option value="@item.TargetId">@item.YearStart - @item.YearEnd</option>
+                    }
+
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Report type</label>
+                <select class="form-control" id="report">
+                    <option value="0" selected>----Select----</option>
+                    @if (role == 1 || role == 2)
+                    {
+                        <option value="1">Production Report</option>
+                        <option value="2">Performance Report</option>
+                        <option value="3">National Accomplishment Report</option>
+                    }
+                    else if (role == 3)
+                    {
+                        <option value="4">Accomplishment Report</option>
+                        <option value="5">Accomplishment Summary</option>
+                        <option value="6">Regional Accomplishment Report</option>
+                    }
+
+
+                </select>
+            </div>
+            @*<div class="form-group" id="coverageGroup">
+                    <label>Coverage</label>
+                    <select class="form-control" id="coverage">
+                        <option value="0" selected>----Select----</option>
+                        <option value="1">Quarter</option>
+                        <option value="2">Year</option>
+
+                    </select>
+                </div>*@
+            <div class="form-group" id="quarterGroup">
+                <label>Quarter</label>
+                <select class="form-control" id="quarter">
+                    <option value="0" selected>----Select----</option>
+                    <option value="1">1st Quarter</option>
+                    <option value="2">2nd Quarter</option>
+                    <option value="3">3rd Quarter</option>
+                    <option value="4">4th Quarter</option>
+                </select>
+            </div>
+            <div class="form-group" id="yearGroup">
+                @{
+                    int add = DateTime.Now.Year - 2016;
+
+                }
+                <label>Year</label>
+                @*new SelectList(Enumerable.Range(2016, 20 + add).ToList()),*@
+                @*@Html.DropDownList("Year", null, "----Select----", new { @class = "form-control" })*@
+                <select id="Year" name="Year" class="form-control">
+                    <option value="0">----Select----</option>
+
+                </select>
+            </div>
+            <div class="alert alert-danger" id="error-display"></div>
+            <div class="form-group">
+
+                <button type="button" id="generate" class="btn btn-primary"><i class="fa fa-wrench"></i> &nbsp; Generate Report</button>
+
+            </div>
+        </div>
+        <div class="col-md-10">
+            <div class="form-group">
+                <label>Document</label>
+                <div class="button-group pull-right">
+
+
+                    <a href="javascript:printDiv('ReportDiv')" class="btn  btn-sm btn-success " style="box-shadow: 1px 1px 1px #888888;"><i class="fa fa-print">  Print</i></a>
+                </div>
+            </div>
+            <div class="box-solid" id="ReportDiv" style="width:100% !important; min-height:730px !important;overflow:hidden;position: relative; border:solid 1px !important; border-color:#ecf0f5 !important;">
+
+            </div>
+            <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+        </div>
+
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+<script>
+    $('document').ready(function () {
+        $("#error-display").hide();
+        //$("#quarterGroup").hide();
+        //$("#yearGroup").hide();
+
+    });
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': true,
+            'autoWidth': false
+        })
+    })
+    $('#generate').click(function () {
+        $('#error-display').text("");
+        $('#error-display').hide();
+        valid = true;
+        var target = $("#target").val();
+        var report = $("#report").val();
+        var coverage = $("#coverage").val();
+        var quarter = $("#quarter").val();
+        var year = $("#Year").val();
+        if ($('#target').children("option:selected").text() == "----Select----") {
+            valid = false;
+            TargetErrorMsg = "Roadplan";
+        } else {
+            TargetErrorMsg = "";
+        }
+        if ($('#report').children("option:selected").text() == "----Select----") {
+            valid = false;
+            ReportErrorMsg = "Report Type";
+        } else {
+            ReportErrorMsg = "";
+        }
+
+
+        if (report == 3 || report == 6) {
+
+            QuarterErrorMsg = "";
+            YearErrorMsg = "";
+        }
+        else {
+            //if ($('#quarter').children("option:selected").text() == "----Select----") {
+            //    valid = false;
+            //    QuarterErrorMsg = "Quarter";
+
+            //} else {
+            //    QuarterErrorMsg = "";
+            //}
+
+
+
+            if ($('#Year').children("option:selected").text() == "----Select----") {
+                valid = false;
+                YearErrorMsg = "Year";
+
+
+            } else {
+                YearErrorMsg = "";
+            }
+        }
+
+
+
+        debugger
+        if (valid == false) {
+            errorMsg = TargetErrorMsg + " " + ReportErrorMsg + "  " + YearErrorMsg;/* " + QuarterErrorMsg + "*/
+            $('#error-display').html("Error! Required field(s): <i>" + errorMsg.trim() + "</i>");
+            $('#error-display').show();
+        }
+        else {
+
+            $.ajax({
+                type: 'GET',
+                url: '/Reports/UserDocs',
+                data: { target: target, report: report, quarter: quarter, year: year },
+
+                success: function (result) {
+
+                    $("#ReportDiv").html(result);
+
+
+
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Oops...',
+                        text: 'error retrieving report '+ errorThrown,
+
+                    })
+                }
+            })
+
+        }
+
+
+
+    });
+    $("#report").change(function () {
+        //CoverageErrorMsg = "";
+        QuarterErrorMsg = "";
+        YearErrorMsg = "";
+
+        var val = $("#report").val();
+        if (val == 3 || val == 6) {
+
+            $("#quarterGroup").hide();
+            $("#yearGroup").hide();
+        }
+        else if (val == 5) {
+            $("#quarterGroup").hide();
+            $("#yearGroup").show();
+        }
+        else {
+
+            $("#quarterGroup").show();
+            $("#yearGroup").show();
+        }
+
+
+
+
+
+
+
+    });
+    //$("#coverage").change(function () {
+    //    QuarterErrorMsg = "";
+    //    YearErrorMsg = "";
+
+    //    var val = $("#coverage").val();
+    //    if (val == 0) {
+    //        $("#quarterGroup").hide();
+    //        $("#yearGroup").hide();
+    //    }
+    //    else if (val == 1) {
+    //        $("#quarterGroup").show();
+    //        $("#yearGroup").hide();
+    //    }
+    //    else if (val == 2) {
+    //        $("#quarterGroup").hide();
+    //        $("#yearGroup").show();
+    //    }
+
+
+
+    //});
+    $("#target").change(function () {
+        var target = $("#target").val();
+        if ($('#target').children("option:selected").text() != "----Select----") {
+
+            var selectList = $("#Year");
+            selectList.find('option').not(':first').remove();
+
+
+            //$.getJSON('/Reports/getTargetYear?target=' + target,
+            //    function (data) {
+            //    alert(data[0]);
+            //});
+
+            $.ajax({
+                url: '/Reports/getTargetYear',
+                type: 'Post',
+                cache: false,
+                data: { target: target },
+                success: function (result) {
+
+
+                    $.each(result.data, function (key, value) {
+                        debugger
+                        $('#Year').append($("<option></option>").attr("value", value).text(value));
+                    });
+
+                }
+            });
+
+
+            //$.ajax({
+            //    type: 'GET',
+            //    url: '/Reports/getTargetYear',
+
+            //    data: { target: target },
+            //    dataType: 'json',
+
+            //    success: function (tempYearArray) {
+            //        debugger
+            //        $.each(tempYearArray, function (key, value) {
+            //            $('#Year')
+            //                .append($("<option></option>")
+            //                    .attr("value", value)
+            //                    .text(value));
+            //        });
+
+            //        //$.each(result, function (key, value) {
+            //        //    $('#Year')
+            //        //        .append($("<option></option>")
+            //        //            .attr("value", value)
+            //        //            .text(value));
+            //        //});
+            //        //for (var index in result) {
+            //        //    // Show value in alert dialog:
+            //        //    alert(result[index]);
+            //        //}
+            //        //alert('sucees');
+            //        //$("#City").html("");
+            //        //$("#City").append
+            //        //    ($('<option></option>').val(null).html("---choose City---"));
+            //        //$.each($.parseJSON(result), function (i, cty) { $("#City").append($('<option></option>').val(cty.Id).html(cty.Name)) })
+
+            //    },
+            //    error: function () { alert("Error !") },
+            //});
+        }
+
+
+
+    });
+
+</script>

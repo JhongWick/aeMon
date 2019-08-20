@@ -1,0 +1,746 @@
+﻿@model IEnumerable<Entities.KPI>
+
+
+<style type="text/css">
+    .table {
+    }
+
+    td, th {
+        padding: 5px !important;
+        border: 1px solid !important;
+    }
+
+    th {
+        text-align: center !important;
+    }
+
+   
+    .valCentered {
+        text-align: center !important;
+    }
+    
+</style>
+<div class="col-md-12">
+    @if (Model.Any())
+    {
+        <div class="header">
+
+            <p style="line-height:normal  !important;">
+
+                <center>
+                    <img src="~/Images/HVCDP_2_Black.png" class="" alt="DA Logo" style="height:160px;">
+                    <h5 style="padding:0px !important;margin:0px !important;">Republic of the Phillipines</h5>
+                    <h3 style="padding:0px !important;margin:0px !important;font-weight:bold;">Department of Agriculture<br />Regional Office @ViewBag.RegionCode</h3>
+                    <h5 style="padding:0px !important;margin:0px !important;">High Value Crops Development and Rural Credit</h5>
+
+
+                    <br />
+
+                    <h3 style="padding:0px !important;margin:0px !important;font-weight:bold;">National Accomplishment Report</h3>
+                    <h4 style="padding:0px !important;margin:0px !important;"><i>  @ViewBag.Year</i></h4>
+                </center>
+            </p>
+
+
+
+        </div>
+        <div class="">
+            <table class=" " style="border:1px solid !important;border-color:black !important;width:100%">
+
+                <thead style="border:1px solid !important;border-color:black !important;">
+                    <tr style="border:1px solid !important;border-color:black !important;">
+                        <th style="">KPIs</th>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            <th style="">@item</th>
+                        }
+
+
+                    </tr>
+                </thead>
+                <tbody style="border:1px solid !important;border-color:black !important;">
+                    <tr>
+                        <td>Land area planted </td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.Hectar.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of farms</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.NoOfFarms.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of trees planted</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.NoOfTrees.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Volume of production </td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.Production.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>
+                            Volume processed <br/>
+                            a.	For local market <br />
+                            b.	For international market
+                        </td>
+
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.VolumeMarket.ToString("#,##0") <br /> @kpiItem.VolumeInternational.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>
+                            Volume sold as raw material<br />
+                            a.	Local<br />
+                            b.	Export
+                        </td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.VolumeSoldMarket.ToString("#,##0") <br /> @kpiItem.VolumeSoldInternational.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>
+                            Number of farmers/growers<br />
+                            a.	Male<br />
+                            b.	Female
+                        </td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.Male.ToString("#,##0") <br /> @kpiItem.Female.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of municipalities engaged</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.MunicipalitiesEngaged.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of nurseries </td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.NumberOfNurseries.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of postharvest facilities utilized</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.NoOfPostharvest.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Income generated</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.IncomeGenerated.ToString("#,##0.00") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of SMEs created</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.SMEs.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of jobs created</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.JobsCreated.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of funding assistance or loans approved and released</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.NoOfFundingAssistance.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of funding institutions/organizations</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.NoOfFundingInstitutions.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of policy reforms instituted</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.NoOfPoliciReforms.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>
+                            Number of seedlings distributed<br />
+                            a.	DA<br />
+                            b.	DENR-NGP<br />
+                            c.	PCA-Kaanib<br />
+                            d.	DAR
+                        </td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.DA.ToString("#,##0") <br /> @kpiItem.DENR_NGP.ToString("#,##0") <br /> @kpiItem.PCA_Kaanib.ToString("#,##0") <br /> @kpiItem.DAR.ToString("#,##0") </td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of techno trainings/seminar conducted</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.Trainings.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of farmers trained </td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.FarmesrsTrained.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of IEC materials distributed</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.IECMaterials.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>
+                            Number of linkages established<br />
+                            a.	Local<br />
+                            b.	International
+                        </td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.LinkagesLocal.ToString("#,##0") <br/> @kpiItem.LinkagesInternational.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Percentage of farmers who apply pests and diseases management</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.DiseasesManagement.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Percentage of farmers who apply Good Agricultural Practices( GAPs)</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.GoodAgriculturalPractices.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of cacao farms certified</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.CacaoFarmsCertified.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of nurseries accredited </td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.NurseriesAccredited.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+
+                    <tr>
+                        <td>Number of model farms and learning/demo sites established</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.ModelFarms.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+                    <tr>
+                        <td>Number of research works developed</td>
+                        @foreach (int item in ViewBag.Year_array)
+                        {
+                            bool hasTD = false;
+
+                            foreach (var kpiItem in Model)
+                            {
+
+                                if (item == kpiItem.Year)
+                                {
+                                    hasTD = true;
+                                    <td class="valCentered">@kpiItem.ResearchWorkDeveloped.ToString("#,##0")</td>
+                                }
+
+
+                            }
+                            if (!hasTD)
+                            {
+                                <td>&nbsp;</td>
+                            }
+                        }
+                    </tr>
+
+
+
+                    @*@foreach (var item in Model)
+                        {
+                            <tr style="border:1px solid !important;border-color:black !important;">
+
+                                <td>@DataAccessLayer.RegionData.returnName(@item.RegionId)</td>
+                                <td class="valCentered">@item.Hectar.ToString("#,##0")</td>
+                                <td class="valCentered">
+                                    @{
+                                        double Prod = item.Production;
+                                        double MT = Prod * .001;
+                                    }
+                                    @MT.ToString("#,##0")
+                                </td>
+                                <td class="valCentered">@item.IncomeGenerated.ToString("#,##0.00")</td>
+                            </tr>
+                        }*@
+
+                </tbody>
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <div class="header">
+
+            <p style="line-height:normal  !important;">
+
+                <center>
+
+                    <h3 style="padding:0px !important;margin:0px !important;font-weight:bold;">No Results Found</h3>
+                </center>
+            </p>
+        </div>
+
+    }
+</div>

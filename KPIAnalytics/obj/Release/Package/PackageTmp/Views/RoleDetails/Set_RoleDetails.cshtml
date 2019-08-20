@@ -1,0 +1,89 @@
+﻿@model List<Entities.Role>
+@{
+    ViewBag.Title = "Role Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="~/bootstrap/toggle/css/toggle2.css" rel="stylesheet" />
+<link href="~/bootstrap/toggle/css/bootstrap-toggle.css" rel="stylesheet" />
+<link href="~/bootstrap/toggle/doc/stylesheet.css" rel="stylesheet" />
+<script src="~/bootstrap/treeview/tree.js"></script>
+<link href="~/bootstrap/treeview/tree.css" rel="stylesheet" />
+<link href="~/bootstrap/toggle/css/tg.css" rel="stylesheet" />
+<script src="~/Scripts/roledetails.js"></script>
+<script>
+     function clicsk(id) {
+         $('#RoleId').val(id); changeRole();
+     }
+</script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+<link href="~/bootstrap/smallertbtn.css" rel="stylesheet" />
+<div class="row">
+    <form class="col-md-2 form-group-sm"></form>
+    <form class="col-md-8 form-group-sm">
+        <h2>Role Details</h2>
+    </form>
+</div>
+
+<form class="col-md-2 form-group-sm"></form>
+<form class="col-md-3 form-group-sm">
+    <table id="RolesTbl" class="table  table-striped table-hover" style="text-align:start;">
+        <thead style="background-color:#f1f1f1">
+            <tr style="border-top:2px solid #147bae;border-bottom:2px solid #147bae">
+                <th>Roles</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Entities.Role role in Model)
+            {
+                <tr><td onmouseover='this.style.cursor = "pointer"' onclick="clicsk(@role.RoleId)">@role.Name</td></tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><input id="RoleId" type="hidden" value="" /></td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+</form>
+
+<form class="col-md-5 form-group-sm" style="border-left:2px solid #147bae" action="@Url.Action("New")" method="post">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group-sm" id="panel">
+                <table id="ModulesTbl" class="table  table-striped table-hover" style="text-align:start">
+                    <thead style="background-color:#f1f1f1">
+                        <tr style="border-top:2px solid #147bae;border-bottom:2px solid #147bae">
+                            <th style="display:none;"></th>
+                            <th style="display:none;"></th>
+                            <th>Modules</th>
+                            <th class="pull-right">Is Allow</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr></tr>
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group-sm">
+        <button type="button" class="btn btn-info btn-sm pull-right" Onclick="Save()">
+            <span class="glyphicon glyphicon-floppy-save"></span>&nbsp; Save
+        </button>
+    </div>
+</form>
+
+<form class="col-md-2 form-group-sm"></form>
+<script src="~/bootstrap/toggle/doc/script.js"></script>
+<script src="~/bootstrap/toggle/js/bootstrap-toggle.js"></script>

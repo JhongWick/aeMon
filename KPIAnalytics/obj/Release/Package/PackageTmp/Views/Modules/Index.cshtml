@@ -1,0 +1,189 @@
+﻿@model List<Entities.Module>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    #myDialog {
+        background-color: white !important;
+    }
+
+    .dataTables_filter {
+        float: left;
+        text-align: left;
+    }
+</style>
+
+
+<div class="box box-warning">
+    <div class="box-header">
+        <h3 class="box-title"><i class="fa fa-cubes"></i> Modules</h3>
+        <a href="#" onclick="AddNew()" class="btn  btn-sm btn-primary pull-right"><i class="fa fa-plus-square"></i>&nbsp;&nbsp;New Module</a>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+            <thead>
+                <tr>
+                    <th>Module</th>
+                    <th>Controller</th>
+                    <th>ModuleAction</th>
+                    <th>IsDeleted</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var entity in Model)
+                {
+                    <tr id="row_@entity.ModuleId" class="odd gradeX">
+                        <td>@entity.Name</td>
+                        <td>@entity.ModuleController</td>
+                        <td>@entity.ModuleAction</td>
+                        <td>@entity.IsDeleted</td>
+                        <td class="center">
+                            <a href="#" class="btn btn-success  btn-sm" onclick="EditModule(@entity.ModuleId)"><i class="glyphicon glyphicon-pencil"></i></a>
+                            @if (entity.IsDeleted == true)
+                            {
+                                <a href="#" id="btnDelete" class="btn btn-danger btn-sm" disabled><i class="glyphicon glyphicon-trash"></i></a>
+                            }
+                            else
+                            {
+                                <a href="#" id="btnDelete" class="btn btn-danger btn-sm" onclick="DeleteModule(@entity.ModuleId)"><i class="glyphicon glyphicon-trash"></i></a>
+                            }
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+<!-- /.row -->
+<div class="modal fade" id="myModal" >
+    <div class="modal-dialog" id="myDialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title" id="modaltitle"></h3>
+            </div>
+        </div>
+        <div class="modal-body" id="myModalBodyDiv">
+            <span>Add New</span>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+
+            <a href="#" class="btn btn-success" onclick="DeleteUser()">Confirm</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+        $(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
+            });
+            $("#myModal").on("click", "#submitAdd", function () {
+                if (validSubmit()) {
+                    $("#formAdd").submit();
+                }
+            });
+            $("#myModal").on("click", "#submitEdit", function () {
+                if (validSubmit()) {
+                    $("#formEdit").submit();
+                }
+            });
+        });
+
+        var isModuleDeleted = function () {
+            if ($('#isDeleted').is(':checked')) {
+                $('#isDeleted').val('true');
+            } else {
+                $('#isDeleted').val('false');
+            }
+        }
+
+        var AddNew = function () {
+            var url = "/Modules/Add";
+            $("#myModalBodyDiv").load(url, function () {
+                $("#modaltitle").text('Add Module');
+                $("#myModal").modal("show");
+                $(".modal-footer").hide();
+                $("#error-display").hide();
+            })
+        }
+
+        var EditModule = function (id) {
+            var url = "/Modules/Edit";
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: { ModuleId: id },
+                success: function (result) {
+                    $("#myModalBodyDiv").html(result);
+                    $("#myModal").modal("show");
+                    $(".modal-title").text('Edit Module?');
+                    $(".modal-footer").hide();
+                    $("#error-display").hide();
+                }
+            })
+        }
+
+        var DeleteModule = function (id) {
+            var url = "/Modules/Delete";
+            $.ajax({
+                type: "GET",
+                url: url,
+                data: { ModuleId: id },
+                success: function (result) {
+                    $("#myModalBodyDiv").html(result);
+                    $("#myModal").modal("show");
+                    $(".modal-title").text('Delete Module?');
+                    $(".modal-footer").hide();
+                }
+            })
+        }
+
+        function validSubmit() {
+            $('#error-display').hide();
+            valid = true;
+            if ($("#name").val().trim().length == 0) {
+                valid = false;
+                modError = "Module";
+            } else {
+                modError = "";
+            }
+            if ($('#moduleController').val().trim().length == 0) {
+                valid = false;
+                modControllerError = "Controller";
+            } else {
+                modControllerError = "";
+            }
+            if ($('#moduleAction').val().trim().length == 0) {
+                valid = false;
+                modActionError = "Action";
+            } else {
+                modActionError = "";
+            }
+            if (!valid) {
+                errorMsg = modError + " " + modControllerError + " " + modActionError;
+                $('#error-display').html("Error! Required field(s): <i>" + errorMsg.trim() + "</i>");
+                $('#error-display').show();
+            }
+            return valid;
+        }
+</script>
+}
+
+
+
+
+

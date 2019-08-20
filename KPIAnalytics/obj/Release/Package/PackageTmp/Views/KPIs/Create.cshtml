@@ -1,0 +1,750 @@
+﻿@using DataAccessLayer;
+
+@model Entities.KPI
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!-- START CUSTOM TABS -->
+
+<div class="row">
+
+    <!-- /.col -->
+    <div class="col-md-12">
+        <!-- Custom Tabs (Pulled to the right) -->
+        <div class="nav-tabs-custom">
+            <ul class="nav nav-tabs nav-tabs pull-right">
+                <li><a href="#tab_1-1" data-toggle="tab">Good Agricultural Practices</a></li>
+                <li><a href="#tab_2-2" data-toggle="tab">Linkages</a></li>
+                <li><a href="#tab_3-2" data-toggle="tab">Support Services</a></li>
+                <li class="active"><a href="#tab_4-2" data-toggle="tab">Productivity</a></li>
+                <li class="pull-left header"><i class="fa fa-th"></i> COCO KPI Outcomes ~ <strong><i>@DataAccessLayer.RegionData.returnName(@DataAccessLayer.UserData.Fetch(@Authentication.CurrentUser.UserId).Region)</i></strong></li>
+            </ul>
+            <form method="post">
+                @Html.AntiForgeryToken()
+                <div class="tab-content" style="background-color:#fff !important;">
+
+                    <div class="tab-pane " id="tab_1-1">
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="box box-primary" style="border-top:none !important">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Good Agricultural Practices</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+
+                                    <div class="box-body">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                @Html.LabelFor(model => model.DiseasesManagement, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-users"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.DiseasesManagement, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.DiseasesManagement, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.GoodAgriculturalPractices, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-users"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.GoodAgriculturalPractices, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.GoodAgriculturalPractices, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.CacaoFarmsCertified, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-certificate"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.CacaoFarmsCertified, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.CacaoFarmsCertified, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.NurseriesAccredited, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-plus-circle"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.NurseriesAccredited, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.NurseriesAccredited, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ModelFarms, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-sitemap"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.ModelFarms, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.ModelFarms, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.ResearchWorkDeveloped, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-search"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.ResearchWorkDeveloped, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.ResearchWorkDeveloped, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                    <!-- /.box-body -->
+
+
+                                </div>
+                                <!-- /.box -->
+                            </div>
+                            <!--/.col (left) -->
+                            <!-- right column -->
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane" id="tab_2-2">
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="box box-primary" style="border-top:none !important">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Linkages</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+
+                                    <div class="box-body">
+                                        <div class="col-md-3">
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.LinkagesLocal, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-chain"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.LinkagesLocal, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.LinkagesLocal, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.LinkagesInternational, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-chain"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.LinkagesInternational, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.LinkagesInternational, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
+
+
+                                    </div>
+                                    <!-- /.box-body -->
+
+
+                                </div>
+                                <!-- /.box -->
+
+
+                            </div>
+                            <!--/.col (left) -->
+                            <!-- right column -->
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="tab-pane " id="tab_3-2">
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="box box-primary" style="border-top:none !important">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Support Services</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+
+                                    <div class="box-body">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.NoOfFundingAssistance, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-dollar"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.NoOfFundingAssistance, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.NoOfFundingAssistance, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.NoOfFundingInstitutions, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-building"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.NoOfFundingInstitutions, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.NoOfFundingInstitutions, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.NoOfPoliciReforms, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-clipboard"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.NoOfPoliciReforms, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.NoOfPoliciReforms, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.DA, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-certificate"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.DA, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.DA, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.DENR_NGP, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-handshake-o"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.DENR_NGP, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.DENR_NGP, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.PCA_Kaanib, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-hand-grab-o"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.PCA_Kaanib, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.PCA_Kaanib, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.DAR, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-certificate"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.DAR, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.DAR, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.Trainings, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-user"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.Trainings, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.Trainings, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.FarmesrsTrained, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-users"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.FarmesrsTrained, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.FarmesrsTrained, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.IECMaterials, htmlAttributes: new { @class = "" })
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.IECMaterials, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.IECMaterials, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <!-- /.box-body -->
+
+
+                                </div>
+                                <!-- /.box -->
+
+
+                            </div>
+                            <!--/.col (left) -->
+                            <!-- right column -->
+                        </div>
+                    </div>
+                    <div class="tab-pane active" id="tab_4-2">
+                        <div class="row">
+                            <!-- left column -->
+                            <div class="col-md-12">
+                                <!-- general form elements -->
+                                <div class="box box-primary" style="border-top:none !important">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Productivity</h3>
+                                    </div>
+                                    <!-- /.box-header -->
+                                    <!-- form start -->
+
+                                    <div class="box-body">
+                                        <hidden id="Region" value="@DataAccessLayer.UserData.Fetch(@Authentication.CurrentUser.UserId).Region" />
+
+
+                                        @{
+                                            List<SelectListItem> listItems = new List<SelectListItem>();
+                                            listItems.Add(new SelectListItem
+                                            {
+                                                Text = "First Quarter",
+                                                Value = "1"
+                                            });
+                                            listItems.Add(new SelectListItem
+                                            {
+                                                Text = "Second Quarter",
+                                                Value = "2",
+
+                                            });
+                                            listItems.Add(new SelectListItem
+                                            {
+                                                Text = "Third Quarter",
+                                                Value = "3"
+                                            });
+                                            listItems.Add(new SelectListItem
+                                            {
+                                                Text = "Fourth Quarter",
+                                                Value = "4"
+                                            });
+                                        }
+
+
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Select</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar-check-o"></i>
+                                                    </div>
+                                                    @Html.DropDownListFor(model => model.Quarter, listItems, "-- Please Select --", new { @class = "form-control", required = "required" })
+                                                    @Html.ValidationMessageFor(model => model.Quarter, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <label>Land area planted (ha)</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-area-chart"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.Hectar, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "(ha)" } })
+                                                    @Html.ValidationMessageFor(model => model.Hectar, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Number of farms</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-building-o"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.NoOfFarms, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#", @Value = ViewBag.Farms.Count, @readOnly = "readonly" } })
+                                                    @Html.ValidationMessageFor(model => model.NoOfFarms, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Number of trees planted</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-tree"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.NoOfTrees, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.NoOfTrees, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Volume of production (kg)</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calculator"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.Production, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "(kg)" } })
+                                                    @Html.ValidationMessageFor(model => model.Production, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @{
+                                                    List<SelectListItem> CacaolistItems = new List<SelectListItem>();
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "UF18",
+                                                        Value = "UF18"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "BR25",
+                                                        Value = "BR25",
+
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "K1",
+                                                        Value = "K1"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "K2",
+                                                        Value = "K2"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "K1",
+                                                        Value = "K1"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "PBG123",
+                                                        Value = "PBG123"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "K4",
+                                                        Value = "K4"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "K7",
+                                                        Value = "K7"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "K8",
+                                                        Value = "K8"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "K9",
+                                                        Value = "K9"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "K10",
+                                                        Value = "K10"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "ICS40",
+                                                        Value = "ICS40"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "UIT1",
+                                                        Value = "UIT1"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "TSO1",
+                                                        Value = "TSO1"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "TSO2",
+                                                        Value = "TSO2"
+                                                    });
+                                                    CacaolistItems.Add(new SelectListItem
+                                                    {
+                                                        Text = "TSO3",
+                                                        Value = "TSO3"
+                                                    });
+
+                                                }
+                                                <label>Variety used</label>
+                                                @Html.DropDownListFor(model => model.Variety, CacaolistItems, "-- Please Select --", new { @class = "form-control", required = "required" })
+                                                @*<textarea id="Variety" name="Variety" class="form-control" required></textarea>*@
+                                                @Html.ValidationMessageFor(model => model.Variety, "", new { @class = "text-danger", placeholder = "type here" })
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Year</label>
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+
+                                                    @Html.DropDownListFor(model => model.Year, new SelectList(@ViewBag.Year, "Text", "Text"), "-- Select Year --", new { @class = "form-control", required = "required" })
+                                                    @*<input type="text" class="form-control pull-right " id="Year" required>*@
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Number of municipalities engaged </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-certificate"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.MunicipalitiesEngaged, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.MunicipalitiesEngaged, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Number of nurseries </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-plus-circle"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.NumberOfNurseries, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.NumberOfNurseries, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Number of postharvest facilities utilized</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-leaf"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.NoOfPostharvest, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.NoOfPostharvest, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Income generated</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-dollar"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.IncomeGenerated, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.IncomeGenerated, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Number of SMEs created</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-building"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.SMEs, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.SMEs, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Number of jobs created</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-users"></i>
+                                                    </div>
+                                                    @Html.EditorFor(model => model.JobsCreated, new { htmlAttributes = new { @class = "form-control", required = "required", placeholder = "#" } })
+                                                    @Html.ValidationMessageFor(model => model.JobsCreated, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Volume processed</label>
+                                                    <div class="input-group">
+                                                        @Html.EditorFor(model => model.VolumeMarket, new { htmlAttributes = new { @class = "form-control", placeholder = "Local Market", required = "required" } })
+                                                        @Html.ValidationMessageFor(model => model.VolumeMarket, "", new { @class = "text-danger" })
+                                                        <span class="input-group-addon">-</span>
+                                                        @Html.EditorFor(model => model.VolumeInternational, new { htmlAttributes = new { @class = "form-control", placeholder = "International", required = "required" } })
+                                                        @Html.ValidationMessageFor(model => model.VolumeInternational, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Volume sold as raw material</label>
+
+                                                    <div class="input-group">
+                                                        @Html.EditorFor(model => model.VolumeSoldMarket, new { htmlAttributes = new { @class = "form-control", placeholder = "Local Market", required = "required" } })
+                                                        @Html.ValidationMessageFor(model => model.VolumeSoldMarket, "", new { @class = "text-danger" })
+                                                        <span class="input-group-addon">-</span>
+                                                        @Html.EditorFor(model => model.VolumeSoldInternational, new { htmlAttributes = new { @class = "form-control", placeholder = "International", required = "required" } })
+                                                        @Html.ValidationMessageFor(model => model.VolumeSoldInternational, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label>Number of farmers/growers</label>
+
+
+                                                    <div class="input-group">
+                                                        @Html.EditorFor(model => model.Male, new { htmlAttributes = new { @class = "form-control", placeholder = "Male", required = "required" } })
+                                                        @Html.ValidationMessageFor(model => model.Male, "", new { @class = "text-danger" })
+                                                        <span class="input-group-addon">-</span>
+                                                        @Html.EditorFor(model => model.Female, new { htmlAttributes = new { @class = "form-control", placeholder = "Female", required = "required" } })
+                                                        @Html.ValidationMessageFor(model => model.Female, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Description</label>
+                                                    <textarea id="Description" name="Description" rows="10" cols="80" required></textarea>
+                                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+                                    <!-- /.box-body -->
+
+                                </div>
+                                <!-- /.box -->
+
+
+                            </div>
+                            <!--/.col (left) -->
+                            <!-- right column -->
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <div class="box-footer">
+                        <button type="submit" id="KPIbutton" class="btn btn-primary"><i class="fa fa-send"></i>&nbsp;&nbsp;Submit</button>
+                        <a href="@Url.Action("Index", "KPIs")" class="btn btn-warning"><i class="fa fa-list"></i>&nbsp;&nbsp;Back to List</a>
+                    </div>
+
+                </div>
+            </form>
+            <!-- /.tab-content -->
+        </div>
+        <!-- nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+<!-- END CUSTOM TABS -->
+<script type="text/javascript">
+    $(function () {
+        CKEDITOR.replace('Description')
+
+    })
+
+
+    $("#Year").change(function () {
+
+        checkDuplicate();
+
+    });
+    $("#Quarter").change(function () {
+
+        checkDuplicate();
+
+
+
+    });
+     function checkDuplicate(){
+
+        var quarters = $("#Quarter").val();
+        var years = $("#Year").val();
+        var regions =  @DataAccessLayer.UserData.Fetch(@Authentication.CurrentUser.UserId).Region;
+
+         if (years != "" && quarters != "")
+         {
+
+             $.ajax({
+                 url: '@Url.Action("ValidateYear", "KPIs")',  // need to validate Role Details first before using
+                 type: 'Get',
+                 dataType: "json",
+                 data: {
+                     year: years, quarter: quarters, region: regions
+                 },
+                 success: function (data) {
+                     if (data.result) {
+                        $('#Quarter').prop('selectedIndex', 0);
+                        $('#Year').prop('selectedIndex', 0);
+
+                         Swal.fire({
+                             title: '<strong><h2>System ALert</h2></strong>',
+                             html: '<h4>Year and Quarter already exists!</h4>',
+                             type: 'info',
+                             confirmButtonText: 'OK'
+                         })
+
+
+                     }
+
+                 },
+                 error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: errorThrown,
+
+                })
+               }
+             });
+
+
+
+        }
+
+    }
+
+</script>

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<KPIAnalytics.Models.ProductionQuarterly>
+
+
+<style type="text/css">
+    .table {
+
+    }
+    td, th {
+       padding:5px!important;
+       border: 1px solid !important;
+    }
+    th {
+        text-align: center !important;
+    }
+    .valCentered{
+        text-align: center !important;
+    }
+    </style>
+<div class="col-md-12">
+    @if (Model.Any())
+    {
+        <div class="header">
+
+            <p style="line-height:normal  !important;">
+
+                <center>
+                    <img src="~/Images/HVCDP_2_Black.png" class="" alt="DA Logo" style="height:160px;">
+                    <h5 style="padding:0px !important;margin:0px !important;">Republic of the Phillipines</h5>
+                    <h3 style="padding:0px !important;margin:0px !important;font-weight:bold;">Department of Agriculture</h3>
+                    <h5 style="padding:0px !important;margin:0px !important;">High Value Crops Development and Rural Credit</h5>
+
+
+                    <br />
+
+                    <h3 style="padding:0px !important;margin:0px !important;font-weight:bold;">Cacao Production Report</h3>
+                    <h4 style="padding:0px !important;margin:0px !important;"><i>Year @ViewBag.Year</i></h4>
+                </center>
+            </p>
+
+
+
+        </div>
+        <div class="">
+            <table class=" " style="border:1px solid !important;border-color:black !important;width:100%">
+
+                <thead style="border:1px solid !important;border-color:black !important;">
+                    <tr style="border:1px solid !important;border-color:black !important;">
+                        <th>Regions</th>
+                        <th>Area Planted (in ha)</th>
+                        <th>Production (in MT)</th>
+                        <th>Amount Generated</th>
+                    </tr>
+                </thead>
+                <tbody style="border:1px solid !important;border-color:black !important;">
+
+                    @foreach (var item in Model)
+                    {
+
+
+
+                        <tr style="border:1px solid !important;border-color:black !important;">
+
+                            <td>Region @item.Code - @item.Region</td>
+                            <td class="valCentered">@item.AreaPlanted.ToString("#,##0")</td>
+                            <td class="valCentered">
+                                @{
+                                    double Prod = item.Production;
+                                    double MT = Prod * .001;
+                                }
+                                @MT.ToString("#,##0")
+                            </td>
+                            <td class="valCentered">@item.income.ToString("#,##0.00")</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <br />
+            <br />
+            <p>Prepared by:</p>
+            <br />
+            <br />
+            <p>Noted by:</p>
+        </div>
+    }
+    else
+    {
+        <div class="header">
+
+            <p style="line-height:normal  !important;">
+
+                <center>
+                  
+                    <h3 style="padding:0px !important;margin:0px !important;font-weight:bold;">No Results Found</h3>
+                </center>
+            </p>
+        </div>
+       
+    }
+</div>
