@@ -58,7 +58,7 @@
                 </span>
                 <div class="info-box-content">
                     <span class="info-box-text">Sustainability sourced cocoa</span>
-                    <span class="info-box-number">@Sustainability%</span>
+                    <span class="info-box-number">@Sustainability.ToString("#,##0.00")%</span>
                     <div class="progress">
                         <div class="progress-bar" style="width: @Sustainability%"></div>
                     </div>
@@ -75,12 +75,12 @@
                 </span>
                 <div class="info-box-content">
                     <span class="info-box-text">Farmers</span>
-                    <span class="info-box-number">@Convert.ToDecimal(@DataAccessLayer.KPIData.AllFarmers()).ToString("#,##0")</span>
+                    <span class="info-box-number">@FarmersGoal.ToString("#,##0.00")%</span>
                     <div class="progress">
                         <div class="progress-bar" style="width:@FarmersGoal%"></div>
                     </div>
                     <span class="progress-description">
-                        @Convert.ToDecimal(FarmersGoal).ToString("#,##0.00")% (Goal of  @Convert.ToDecimal(Model.Farmers).ToString("#,##0")) farmers
+                        @Convert.ToDecimal(FarmersGoal).ToString("#,##0.00") (Goal of  @Convert.ToDecimal(Model.Farmers).ToString("#,##0")) farmers
                     </span>
                 </div>
                 <!-- /.info-box-content -->
@@ -94,12 +94,12 @@
                 </span>
                 <div class="info-box-content">
                     <span class="info-box-text">Trees</span>
-                    <span class="info-box-number">@Convert.ToDecimal(@DataAccessLayer.KPIData.AllTrees()).ToString("#,##0")</span>
+                    <span class="info-box-number">@TreesGoal.ToString("#,##0.00")%</span>
                     <div class="progress">
                         <div class="progress-bar" style="width: @TreesGoal% "></div>
                     </div>
                     <span class="progress-description">
-                        @Convert.ToDecimal(TreesGoal).ToString("#,##0.00")% (Goal of  @Convert.ToDecimal(Model.Trees).ToString("#,##0")) Trees
+                        @Convert.ToDecimal(TreesGoal).ToString("#,##0.00") (Goal of  @Convert.ToDecimal(Model.Trees).ToString("#,##0")) Trees
                     </span>
                 </div>
                 <!-- /.info-box-content -->

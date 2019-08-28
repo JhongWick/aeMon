@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<form method="post">
+<form method="post" id="KPITargetForm">
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.TargetId)
     @Html.HiddenFor(model => model.UniqueId)
@@ -262,7 +262,8 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            <button type="submit" id="KPIbutton" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Save</button>
+            <button type="button" id="KPIbutton" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Save</button>
+            @*<button type="submit" style="" id="btnSubmit" class="btn btn-primary"><i class="fa fa-save"></i>&nbsp;&nbsp;Submit</button>*@
             <a href="@Url.Action("Index", "Targets")" class="btn btn-warning"><i class="fa fa-list"></i>&nbsp;&nbsp;Back to List</a>
         </div>
     </div>
@@ -274,6 +275,40 @@
     $(function () {
         CKEDITOR.replace('Description')
        
+    })
+    $("#KPIbutton").click(function () {
+        var MT = $('#MetricTonne').val();
+        var Farmers = $('#Farmers').val();
+        var Trees = $('#Trees').val();
+
+        if (MT == 0) {
+            Swal.fire({
+                title: '<strong><h2>System ALert</h2></strong>',
+                html: '<h4>Target volume value cannot be Zero (0)</h4>',
+                type: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
+        else if (Farmers == 0) {
+            Swal.fire({
+                title: '<strong><h2>System ALert</h2></strong>',
+                html: '<h4>Farmers value cannot be Zero (0)</h4>',
+                type: 'error',
+                confirmButtonText: 'OK'
+            })
+        }
+        else if (Trees == 0) {
+            Swal.fire({
+                title: '<strong><h2>System ALert</h2></strong>',
+                html: '<h4>Trees value cannot be Zero (0)</h4>',
+                type: 'error',
+                confirmButtonText: 'OK'
+            })
+        } else {
+            $("#KPITargetForm").submit();
+        }
+
+        
     })
     $("#YearEnd").change(function () {
         var start = $("#YearStart").val();

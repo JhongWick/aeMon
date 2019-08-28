@@ -129,19 +129,19 @@
 
                     <li>
                         <a href="@Url.Action("Index","KPIs")">
-                            <i class="fa fa-key"></i> <span>Key Performance Indicators</span>
+                            <i class="fa fa-key"></i> <span>KPI Accomplishments</span>
 
                         </a>
                     </li>
                     <li>
                         <a href="@Url.Action("Index","Farms")">
-                            <i class="fa fa-tree"></i> <span>Farms</span>
+                            <i class="fa fa-tree"></i> <span>Farm Location</span>
 
                         </a>
                     </li>
                     <li>
                         <a href="@Url.Action("Index","Targets")">
-                            <i class="fa fa-bullseye"></i> <span>KPI Targets</span>
+                            <i class="fa fa-bullseye"></i> <span>Production Target</span>
                         </a>
                     </li>
                     <li>
@@ -149,7 +149,11 @@
                             <i class="fa fa-clipboard"></i> <span>Reports</span>
                         </a>
                     </li>
-
+                    <li>
+                        <a href="@Url.Action("Index","Regions")">
+                            <i class="fa fa-map-pin"></i> <span>Regions</span>
+                        </a>
+                    </li>
                     @{
                         var role = UserRoleData.GetByUserId(Authentication.CurrentUser.UserId).RoleId;
                     }
@@ -242,7 +246,7 @@
         $.widget.bridge('uibutton', $.ui.button);
     </script>
     <!-- Bootstrap 3.3.7 -->
-    <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> 
     <!-- Morris.js charts -->
     @*<script src="~/bower_components/raphael/raphael.min.js"></script>
         <script src="~/bower_components/morris.js/morris.min.js"></script>*@

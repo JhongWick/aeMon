@@ -203,6 +203,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\FileController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\ModulesController.cs" />
     <Compile Include="Controllers\StorageController.cs" />
@@ -8246,6 +8247,11 @@
     <Content Include="sweetalert2-8.14.0\package\src\sweetalert2.scss" />
     <Content Include="sweetalert2-8.14.0\package\src\toasts.scss" />
     <Content Include="sweetalert2-8.14.0\package\src\variables.scss" />
+    <Content Include="Views\Regions\Add.cshtml" />
+    <Content Include="Views\Regions\Delete.cshtml" />
+    <Content Include="Views\Regions\Details.cshtml" />
+    <Content Include="Views\Regions\Edit.cshtml" />
+    <Content Include="Views\Regions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

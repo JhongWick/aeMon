@@ -1,0 +1,59 @@
+﻿@model Entities.Module
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Module</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UniqueId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UniqueId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModuleController)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModuleController)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModuleAction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModuleAction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ModuleId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
